@@ -2,13 +2,179 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liujinyang6.github.io</id>
     <title>Liu jinyang&apos;s Blog</title>
-    <updated>2020-05-27T07:45:33.942Z</updated>
+    <updated>2020-06-16T03:21:35.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liujinyang6.github.io"/>
     <link rel="self" href="https://liujinyang6.github.io/atom.xml"/>
     <logo>https://liujinyang6.github.io/images/avatar.png</logo>
     <icon>https://liujinyang6.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Liu jinyang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[python读写excel文件]]></title>
+        <id>https://liujinyang6.github.io/post/python-du-xie-excel-wen-jian/</id>
+        <link href="https://liujinyang6.github.io/post/python-du-xie-excel-wen-jian/">
+        </link>
+        <updated>2020-03-06T03:14:57.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="用xlrd和xlwt读写excel"><strong>用xlrd和xlwt读写excel</strong></h2>
+<p>首先下载安装<strong>xlrd</strong>和<strong>xlwt</strong>这两个库</p>
+<h3 id="使用xlrd读取excel">使用xlrd读取excel</h3>
+<pre><code class="language-python"># 导入包
+import xlrd
+
+# 1、打开excel
+readbook = xlrd.open_workbook(r'\test\canying.xlsx')
+
+# 2、获取读入的文件的sheet
+sheet = readbook.sheet_by_index(1)#索引的方式，从0开始
+
+sheet = readbook.sheet_by_name('sheet2')#通过名字定位sheet页
+
+allsheetnames = readbook.sheet_names()#返回所有sheet页名字组成的列表
+
+# 3、获取sheet的最大行数和列数
+nrows = sheet.nrows#行
+
+ncols = sheet.ncols#列
+
+# 4、获取某个单元格的值
+lng = sheet.cell(x,y)
+
+lng = sheet.cell(0,0).value#获取1行1列的表格值，从0开始计数
+
+lat = sheet.cell(1,4).value#获取2行5列的表格值，从0开始计数
+
+# 5、获取某行/某列的值
+row_value = sheet.row_values(x)  #获取x行的值，从0开始计数
+
+col_value = sheet.col_values(y)  #获取y列的值，从0开始计数
+
+</code></pre>
+<h3 id="使用xlutilscopy写excel"><strong>使用xlutils.copy写excel</strong></h3>
+<pre><code class="language-python"># 导入前，先导入xlrd，需要依赖这个包
+from xlutils.copy import copy
+
+# 1-读取源excel中的所有数据（复制对象）
+rb = xlrd.open_workbook(excel_dir + '\\' + 'data.xls')
+
+# 2-复制读取的源excel对象
+wb = copy(rb)
+
+# 3-通过get_sheet()获取复制对象的sheet页
+ws = wb.get_sheet(2)
+    
+# 4-对sheet页进行写入(传入x和y坐标，和具体写入的value)
+ws.write(id,2,real)
+
+ws.write(id,3,status)
+
+# 5-保存excel（具体的excel路径+名称）
+wb.save(self.excel_dir + '\\' + 'data.xls')
+
+</code></pre>
+<ul>
+<li><strong>注意</strong>：运行代码时要关闭excel，否则会报错</li>
+</ul>
+<h2 id="使用openpyxl库读写excel"><strong>使用openpyxl库读写excel</strong></h2>
+<p>​	xlrd和xlwt处理的是xls文件，单个sheet最大行数是65535，如果数据量超过65535就会遇到：ValueError: row index was 65536, not allowed by .xls format。</p>
+<p>​	如果有更大需要的，建议使用openpyxl函数，最大行数达到1048576。</p>
+<pre><code class="language-python"># 导入包
+import openpyxl
+
+# 打开excel
+file_path = r'D:\work\testdata.xlsx'
+
+inwb = openpyxl.load_workbook(file_path) # 读取文件
+
+# 获取打开的excel的sheet内容
+sheetnames = inwb.get_sheet_names()  # 获取所有sheet页的name
+
+ws = inwb.get_sheet_by_name(sheetnames[0])  # 按照name获取第一个sheet页的内容
+
+# 获取sheet的最大行数和列数
+rows = ws.max_row
+cols = ws.max_column
+
+# 获取某个单元格的值
+ws.cell(1, 1).value
+
+# 打开将写的表并添加sheet
+outwb = openpyxl.Workbook()   # 打开一个将写的文件
+
+outws = outwb.create_sheet(index=0) # 在将写的文件创建一个新的sheet
+
+# 保存
+saveExcel = r'D:\work\new.xlsx'
+
+outwb.save(saveExcel) # 一定要记得保存
+</code></pre>
+<p><strong>注意</strong>：最后一定要记得保存，否则就前功尽弃喽😲</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python读取config-ini文件]]></title>
+        <id>https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/</id>
+        <link href="https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/">
+        </link>
+        <updated>2020-03-01T01:33:50.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="读取步骤">读取步骤：</h2>
+<h2 id="1导入configparser">1.导入configparser</h2>
+<pre><code class="language-python">import configparser
+</code></pre>
+<h2 id="2实例化一个configparser对象读取目标配置文件内容">2.实例化一个configparser对象，读取目标配置文件内容</h2>
+<pre><code class="language-python"># 1.实例化configparser对象
+conf = configparser.ConfigParser()
+
+# 2.获取目标.ini文件路径
+file_path = os.path.dirname(‘xxxini文件路径’)+&quot;\\config.ini&quot;
+
+# 3.读取目标文件内的内容(section)，当有中文的时候使用encoding
+conf.read(file_path,encoding=&quot;utf-8-sig&quot;)
+
+</code></pre>
+<ul>
+<li>
+<h3 id="configini文件格式">config.ini文件格式</h3>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://liujinyang6.github.io/post-images/1592271873138.png" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<h3 id="获取文件内的所有section">获取文件内的所有section</h3>
+</li>
+</ul>
+<pre><code class="language-python">sections = conf.sections()
+  
+print('获取配置文件所有的section', sections)
+</code></pre>
+<ul>
+<li>
+<h3 id="获取xx-section下的所有option">获取xx section下的所有option</h3>
+</li>
+</ul>
+<pre><code class="language-python">options = conf.options('mysql')
+
+print('获取指定section下所有option', options)
+</code></pre>
+<ul>
+<li>
+<h3 id="获取xx-section下的所有键值对">获取xx section下的所有键值对</h3>
+</li>
+</ul>
+<pre><code class="language-python">items = conf.items('mysql')
+
+print('获取指定section下所有的键值对', items)
+</code></pre>
+<ul>
+<li>
+<h3 id="获取xx-section下的某个option">获取xx section下的某个option</h3>
+</li>
+</ul>
+<pre><code class="language-python">value = conf.get('mysql', 'host')
+
+print('获取指定的section下的option', value)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[软件测试流程]]></title>
         <id>https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/</id>

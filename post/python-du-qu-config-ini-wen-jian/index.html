@@ -178,33 +178,208 @@
 </script>
             <div class="main">
                 <div class="container">
-                    <div class="post-wrap archive">
-                        
+                    <article class="post-wrap">
+                        <header class="post-header">
+                            <h1 class="post-title">
+                                Python读取config-ini文件
+                            </h1>
                             
-                                <h3>
-                                    2018
-                                </h3>
+                                <!--en-->
+                                <div class="post-meta en">
+                                    Author:
+                                    <a itemprop="author" rel="author" href="/">
+                                        Liu jinyang's Blog
+                                    </a>
+                                    <span class="post-time">
+                                Date: <a href="#">2020-03-01</a>
+                            </span>
+                                    <span class="post-readtime">Reading Time:<a
+                                    href="#">0.8
+                                    mins</a></span>
+                                    <span class="post-words">words:<a href="#">197</a></span>
+                                    
+                                        <span class="post-category">
+                                Category:
+                                
+                                <a href="https://liujinyang6.github.io/tag/eeeVnSPFS/">教程</a>
+                                
+                                <a href="https://liujinyang6.github.io/tag/77b2YraK6h/">python</a>
+                                
+                                <a href="https://liujinyang6.github.io/tag/O2kJQ0ZbdH/">自动化测试</a>
+                                
+                            </span>
+                                        
+                                            Views:
+                                            <span data-hk-page="current"> - </span>
+                                            
+                                </div>
+                                
+                        </header>
+                        
+                            <img class="post-feature-image" src="https://liujinyang6.github.io/post-images/python-du-qu-config-ini-wen-jian.jpg" alt="">
+                          
+                        <div class="post-content">
+                            <h2 id="读取步骤">读取步骤：</h2>
+<h2 id="1导入configparser">1.导入configparser</h2>
+<pre><code class="language-python">import configparser
+</code></pre>
+<h2 id="2实例化一个configparser对象读取目标配置文件内容">2.实例化一个configparser对象，读取目标配置文件内容</h2>
+<pre><code class="language-python"># 1.实例化configparser对象
+conf = configparser.ConfigParser()
+
+# 2.获取目标.ini文件路径
+file_path = os.path.dirname(‘xxxini文件路径’)+&quot;\\config.ini&quot;
+
+# 3.读取目标文件内的内容(section)，当有中文的时候使用encoding
+conf.read(file_path,encoding=&quot;utf-8-sig&quot;)
+
+</code></pre>
+<ul>
+<li>
+<h3 id="configini文件格式">config.ini文件格式</h3>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://liujinyang6.github.io/post-images/1592271873138.png" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<h3 id="获取文件内的所有section">获取文件内的所有section</h3>
+</li>
+</ul>
+<pre><code class="language-python">sections = conf.sections()
+  
+print('获取配置文件所有的section', sections)
+</code></pre>
+<ul>
+<li>
+<h3 id="获取xx-section下的所有option">获取xx section下的所有option</h3>
+</li>
+</ul>
+<pre><code class="language-python">options = conf.options('mysql')
+
+print('获取指定section下所有option', options)
+</code></pre>
+<ul>
+<li>
+<h3 id="获取xx-section下的所有键值对">获取xx section下的所有键值对</h3>
+</li>
+</ul>
+<pre><code class="language-python">items = conf.items('mysql')
+
+print('获取指定section下所有的键值对', items)
+</code></pre>
+<ul>
+<li>
+<h3 id="获取xx-section下的某个option">获取xx section下的某个option</h3>
+</li>
+</ul>
+<pre><code class="language-python">value = conf.get('mysql', 'host')
+
+print('获取指定的section下的option', value)
+</code></pre>
+
+                        </div>
+                        
+                            <div class="post-toc">
+                                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%AF%BB%E5%8F%96%E6%AD%A5%E9%AA%A4">读取步骤：</a></li>
+<li><a href="#1%E5%AF%BC%E5%85%A5configparser">1.导入configparser</a></li>
+<li><a href="#2%E5%AE%9E%E4%BE%8B%E5%8C%96%E4%B8%80%E4%B8%AAconfigparser%E5%AF%B9%E8%B1%A1%E8%AF%BB%E5%8F%96%E7%9B%AE%E6%A0%87%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9">2.实例化一个configparser对象，读取目标配置文件内容</a>
+<ul>
+<li><a href="#configini%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F">config.ini文件格式</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%86%85%E7%9A%84%E6%89%80%E6%9C%89section">获取文件内的所有section</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96xx-section%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89option">获取xx section下的所有option</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96xx-section%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E9%94%AE%E5%80%BC%E5%AF%B9">获取xx section下的所有键值对</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96xx-section%E4%B8%8B%E7%9A%84%E6%9F%90%E4%B8%AAoption">获取xx section下的某个option</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                            
                                 
                                     
+                                        <!--en-->
+                                        <section class="post-copyright en">
+                                            <p class="copyright-item">
+                                                <span>Author:</span>
+                                                <span>Liu jinyang's Blog</span>
+                                            </p>
 
-                                        <article class="archive-item">
-                                            <a class="archive-item-link" href="https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/">
-                                                软件测试流程
-                                            </a>
-                                            <span class="archive-item-date">2018-12-12 </span>
-                                        </article>
+                                            <p class="copyright-item">
+                                                <span>Permalink:</span>
+                                                <span><a href="https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/">https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/</a></span>
+                                            </p>
+
+                                            <p class="copyright-item">
+                                                <span>License:</span>
+                                                <span>MIT License</span>
+                                            </p>
+                                        </section>
                                         
-                                            
                                                 
-                    </div>
-                    <div class="pagination-container">
-                        
-                                                
+                                                    
+                                                        <!-- Share-->
+                                                        <span style="margin-right:15px">
+                                                    <i class="post-share"></i>
+                                                    <span>Share:</span>
+                                                        <a title="QR Code" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/"><i class="fa fa-qrcode"></i></a>
+                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/&sharesource=qzone&title=Python读取config-ini文件&pics=https://liujinyang6.github.io/images/avatar.png?v=1592277686023&summary="><i class="fa fa-qq"></i></a>
+                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/&sharesource=weibo&title=Python读取config-ini文件 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1592277686023 "><i class="fa fa-weibo "></i></a>
                                                         
+                                                                </span>
+                                                                <!--en-->
+                                                                <section class="post-tags en ">
+                                                                    <div>
+                                                                        <span>Tag(s):</span>
+                                                                        <span class="tag ">
+                        
+                        
+                        <a href="https://liujinyang6.github.io/tag/eeeVnSPFS/">#
+                                                教程
+                                                    </a>
+                                                    
+                        <a href="https://liujinyang6.github.io/tag/77b2YraK6h/">#
+                                                python
+                                                    </a>
+                                                    
+                        <a href="https://liujinyang6.github.io/tag/O2kJQ0ZbdH/">#
+                                                自动化测试
+                                                    </a>
+                                                    
+                                                        
+                                                            </span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="javascript:window.history.back();">back</a>
+                                                                        <span>&dot;</span>
+                                                                        <a href="#">home</a>
+                                                                    </div>
+                                                                </section>
                                                                 
-                    </div>
+                                                                                <!---->
+                                                                                <section class="post-nav">
+                                                                                    
+                                                                                        <a class="prev" rel="prev" href="https://liujinyang6.github.io/post/python-du-xie-excel-wen-jian/">
+                                                                                            python读写excel文件
+                                                                                        </a>
+                                                                                        
+                                                                                            
+                                                                                                <a class="next" rel="next" href="https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/">
+                                                                                                    软件测试流程
+                                                                                                </a>
+                                                                                                
+                                                                                </section>
+                    </article>
                 </div>
+                
+                                            
             </div>
+    </div>
+    </div>
     </div>
     
     <div id="player"></div>
@@ -351,5 +526,8 @@
                     
         </div>
 </body>
+<script>
+    scroll();
+</script>
 
 </html>
