@@ -2,13 +2,119 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liujinyang6.github.io</id>
     <title>Liu jinyang&apos;s Blog</title>
-    <updated>2020-06-16T03:21:35.320Z</updated>
+    <updated>2020-06-16T06:32:26.212Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liujinyang6.github.io"/>
     <link rel="self" href="https://liujinyang6.github.io/atom.xml"/>
     <logo>https://liujinyang6.github.io/images/avatar.png</logo>
     <icon>https://liujinyang6.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Liu jinyang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[DDT框架]]></title>
+        <id>https://liujinyang6.github.io/post/ddt-kuang-jia/</id>
+        <link href="https://liujinyang6.github.io/post/ddt-kuang-jia/">
+        </link>
+        <updated>2020-03-20T06:18:35.000Z</updated>
+        <content type="html"><![CDATA[<p>​		<br>
+​		<strong>数据驱动</strong>的单元测试是为数据源中的每一行重复运行的一种单元测试。<strong>数据驱动</strong>的单元测试的常用情况是使用多个输入值测试 API。不是编写调用 API 的多个单元测试（每个单元测试均具有一组新的输入），也不是在单元测试中创建一个数组并使用循环代码，而是可以编写执行 API 的单个单元测试方法。然后可以从数据库表的行中进行数据检索以便传递给该测试方法的连续调用。可以使用此技术测试由不同用户（每个用户具有不同角色）使用的应用程序。对于每个用户，数据源中的一行将根据角色指示预期响应。然后，该测试将通过针对每个用户运行功能，对该应用程序进行测试，并验证产生的响应是否与预期响应一致。</p>
+<p>​		在测试工作中，针对某一API接口，或者某一个用户界面的输入框，需要设计大量相关的用例，每一个用例包含实际输入的各种可能的数据。通常的做法是，将测试数据存放到一个数据文件里，然后从数据文件读取，在脚本中循环输入测试数据，并对结果进行验证。</p>
+<p>​		<code>ddt</code>是结合<code>unittest</code>框架来工作的，所以要先具备<code>unittest</code>框架的知识。</p>
+<hr>
+<h2 id="使用步骤">使用步骤</h2>
+<p>1.导入ddt包</p>
+<p>2.用装饰器装饰@ddt</p>
+<p>3.传入参数，执行</p>
+<hr>
+<h2 id="传参示例">传参示例</h2>
+<h3 id="传参方式一单个传参">传参方式一：单个传参</h3>
+<pre><code class="language-python"># 单个传参
+
+import unittest
+from ddt import ddt,data,unpack
+
+
+@ddt
+class MyTestCase1(unittest.TestCase):
+    
+    # 2,3,4会分别按照执行次数传入，比如第一次执行方法传入2，第二次执行方法传入3,第三次......
+    @data(2, 3, 4)
+    def test_normal(self, value):
+        
+        print(value)
+        
+        self.assertEqual(value, 2)
+
+        
+if __name__ == '__main__':
+    
+    unittest.main()
+</code></pre>
+<hr>
+<h3 id="传参方式二元组-列表-字典传参">传参方式二：元组、列表、字典传参</h3>
+<pre><code class="language-python"># 元组、列表、字典传参
+
+import unittest
+from ddt import ddt,data,unpack
+
+
+@ddt
+class MyTestCase2(unittest.TestCase):
+    
+    # 会依次按照执行次数传入，比如第一次执行该方法传入（1，2），第二次传入（2，3）
+    @data((1, 2), (2, 3))
+    @unpack  # 只有需要进行分发参数的时候才需要添加。1分发给value1，2分发给value2
+    def test_tuple(self, value1, value2):
+        
+        print(&quot;tuple:&quot;,value1, value2)
+        
+        self.assertEqual(value2, value1+1)
+        
+     
+    @data([1, 2], [2, 3])
+    @unpack
+    def test_list(self, value1, value2):
+        
+        print(&quot;list:&quot;,value1, value2)
+        
+        self.assertEqual(value2, value1+1)
+        
+    
+    @data({'value1':1, 'value2':2}, {'value1':2, 'value2':3})
+    @unpack   # 入参参数名必须和字典key值一致，否则会报错
+    def test_dict(self, value1, value2):
+        
+        print(&quot;dictionary:&quot;,value1, value2)
+        
+        self.assertEqual(value2, value1+1)
+        
+     
+if __name__ == '__main__':
+    
+    unittest.main()
+</code></pre>
+<hr>
+<h3 id="传参方式三json文件传参">传参方式三：json文件传参</h3>
+<pre><code class="language-python"># 传入json
+
+import unittest
+from ddt import ddt,data,unpack,file_data
+
+
+@ddt
+class MyTestCase3(unittest.TestCase):
+    
+    @file_data('E:\\test.json')
+    def test_file(self, value):
+        
+        print(&quot;json file:&quot;,value)
+        
+ 
+if __name__ == '__main__':
+    
+    unittest.main()
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python读写excel文件]]></title>
         <id>https://liujinyang6.github.io/post/python-du-xie-excel-wen-jian/</id>
@@ -17,6 +123,7 @@
         <updated>2020-03-06T03:14:57.000Z</updated>
         <content type="html"><![CDATA[<h2 id="用xlrd和xlwt读写excel"><strong>用xlrd和xlwt读写excel</strong></h2>
 <p>首先下载安装<strong>xlrd</strong>和<strong>xlwt</strong>这两个库</p>
+<hr>
 <h3 id="使用xlrd读取excel">使用xlrd读取excel</h3>
 <pre><code class="language-python"># 导入包
 import xlrd
@@ -49,6 +156,7 @@ row_value = sheet.row_values(x)  #获取x行的值，从0开始计数
 col_value = sheet.col_values(y)  #获取y列的值，从0开始计数
 
 </code></pre>
+<hr>
 <h3 id="使用xlutilscopy写excel"><strong>使用xlutils.copy写excel</strong></h3>
 <pre><code class="language-python"># 导入前，先导入xlrd，需要依赖这个包
 from xlutils.copy import copy
@@ -74,6 +182,7 @@ wb.save(self.excel_dir + '\\' + 'data.xls')
 <ul>
 <li><strong>注意</strong>：运行代码时要关闭excel，否则会报错</li>
 </ul>
+<hr>
 <h2 id="使用openpyxl库读写excel"><strong>使用openpyxl库读写excel</strong></h2>
 <p>​	xlrd和xlwt处理的是xls文件，单个sheet最大行数是65535，如果数据量超过65535就会遇到：ValueError: row index was 65536, not allowed by .xls format。</p>
 <p>​	如果有更大需要的，建议使用openpyxl函数，最大行数达到1048576。</p>
@@ -111,7 +220,7 @@ outwb.save(saveExcel) # 一定要记得保存
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Python读取config-ini文件]]></title>
+        <title type="html"><![CDATA[Python读取config.ini文件]]></title>
         <id>https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/</id>
         <link href="https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/">
         </link>
@@ -120,6 +229,7 @@ outwb.save(saveExcel) # 一定要记得保存
 <h2 id="1导入configparser">1.导入configparser</h2>
 <pre><code class="language-python">import configparser
 </code></pre>
+<hr>
 <h2 id="2实例化一个configparser对象读取目标配置文件内容">2.实例化一个configparser对象，读取目标配置文件内容</h2>
 <pre><code class="language-python"># 1.实例化configparser对象
 conf = configparser.ConfigParser()
@@ -131,12 +241,14 @@ file_path = os.path.dirname(‘xxxini文件路径’)+&quot;\\config.ini&quot;
 conf.read(file_path,encoding=&quot;utf-8-sig&quot;)
 
 </code></pre>
+<hr>
 <ul>
 <li>
 <h3 id="configini文件格式">config.ini文件格式</h3>
 </li>
 </ul>
 <figure data-type="image" tabindex="1"><img src="https://liujinyang6.github.io/post-images/1592271873138.png" alt="" loading="lazy"></figure>
+<hr>
 <ul>
 <li>
 <h3 id="获取文件内的所有section">获取文件内的所有section</h3>

@@ -181,7 +181,7 @@
                     <article class="post-wrap">
                         <header class="post-header">
                             <h1 class="post-title">
-                                软件测试流程
+                                DDT框架
                             </h1>
                             
                                 <!--en-->
@@ -191,17 +191,21 @@
                                         Liu jinyang's Blog
                                     </a>
                                     <span class="post-time">
-                                Date: <a href="#">2018-12-12</a>
+                                Date: <a href="#">2020-03-20</a>
                             </span>
                                     <span class="post-readtime">Reading Time:<a
-                                    href="#">10.7
+                                    href="#">2.9
                                     mins</a></span>
-                                    <span class="post-words">words:<a href="#">3163</a></span>
+                                    <span class="post-words">words:<a href="#">729</a></span>
                                     
                                         <span class="post-category">
                                 Category:
                                 
-                                <a href="https://liujinyang6.github.io/tag/FrnBOAKuF/">软件测试</a>
+                                <a href="https://liujinyang6.github.io/tag/eeeVnSPFS/">教程</a>
+                                
+                                <a href="https://liujinyang6.github.io/tag/77b2YraK6h/">python</a>
+                                
+                                <a href="https://liujinyang6.github.io/tag/O2kJQ0ZbdH/">自动化测试</a>
                                 
                             </span>
                                         
@@ -212,558 +216,107 @@
                                 
                         </header>
                         
-                            <img class="post-feature-image" src="https://imgsa.baidu.com/exp/w=480/sign=aeb48ac23e6d55fbc5c6772e5d224f40/b7003af33a87e950bd09157013385343fbf2b494.jpg" alt="">
+                            <img class="post-feature-image" src="https://liujinyang6.github.io/post-images/ddt-kuang-jia.jpg" alt="">
                           
                         <div class="post-content">
-                            <p>Posted on 2018-12-12 | In Hexo</p>
-<h2 id="需求分析">需求分析：</h2>
-<h3 id="-整体流程图">- 整体流程图：</h3>
-<p>需求提取 -&gt; 需求分析 -&gt; 需求评审 -&gt; 更新后的测试需求跟踪xmind</p>
-<h3 id="-分析流程">- 分析流程：</h3>
-<ol>
-<li>需求提取：</li>
-</ol>
-<ul>
-<li>分析依据（包括：需求矩阵、产品交互图、需求说明书）</li>
-<li>获取需求的纬度
-<ul>
-<li>客户价值
-<ul>
-<li>可以为客户带来哪些价值？</li>
-<li>可以解决哪些问题？</li>
-<li>根据以上问题定位功能是否合理</li>
-</ul>
-</li>
-<li>UI功能 - 展示功能</li>
-<li>模块关联-历史模块
-<ul>
-<li>新功能模块关联</li>
-<li>考虑是否关联？耦合部分是否需要支持？</li>
-</ul>
-</li>
-<li>客户使用场景-部署方式
-<ul>
-<li>网络特性</li>
-<li>客户使用服务器常见外设</li>
-</ul>
-</li>
-<li>性能参数-性能要求
-<ul>
-<li>网卡最低速率</li>
-</ul>
-</li>
-<li>硬件支持</li>
-</ul>
-</li>
-<li>输出（提取最原始的测试需求）</li>
-</ul>
-<ol>
-<li>需求分析：</li>
-</ol>
-<ul>
-<li>
-<p>分析依据（五维分析）</p>
-<ul>
-<li>用户场景</li>
-</ul>
-<ol>
-<li>功能是否和场景强关联</li>
-<li>网络拓扑能否满足客户需求</li>
-<li>和竞争对手比较差异</li>
-<li>功能是否能满足客户实际应用场景</li>
-<li>是否考虑了用户的实际操作</li>
-</ol>
-<ul>
-<li>明确性</li>
-</ul>
-<ol>
-<li>范围明确性（参数、类型长度范围）</li>
-<li>清晰性限制等范畴</li>
-<li>无法预知影响的需求提出进行确定，风险</li>
-</ol>
-<ul>
-<li>二义性</li>
-</ul>
-<ol>
-<li>概念模糊【大概念、第三方支持、与上个版本相同】</li>
-<li>支持与不支持等范畴</li>
-<li>一个需求描述能出现多种理解</li>
-</ol>
-<ul>
-<li>完整性</li>
-</ul>
-<ol>
-<li>需求一致性【用户需求、需求规格、需求矩阵三者是否同意】</li>
-<li>需求完整【隐形需求】</li>
-<li>关联性【与新老功能、与外置软件设备】</li>
-</ol>
-<ul>
-<li>可测试性</li>
-</ul>
-<ol>
-<li>实现测试需要的工具、方法【调试、接口命令】</li>
-<li>定位方式【日志等形式观察】</li>
-<li>复杂环境、容量边界、操作时过程不可见</li>
-</ol>
-</li>
-<li>
-<p>输出</p>
-<ol>
-<li>测试需求跟踪</li>
-<li>缺陷预防bug</li>
-<li>工具需求</li>
-<li>整理出明确的需求点</li>
-<li>测试地图</li>
-</ol>
-</li>
-<li>
-<p>分析思路误区：需求和实现的区别【现有需求才有代码实现，不能把代码实现当作需求】</p>
-</li>
-<li>
-<p>需求分析的意义</p>
-<ol>
-<li>明确产品给客户带来的价值</li>
-<li>明确产品支持和不支持的功能</li>
-<li>明确产品各个功能的约束性</li>
-<li>知道开发实现功能</li>
-<li>知道测试分析和产出测试点</li>
-</ol>
-</li>
-</ul>
-<h2 id="测试设计">测试设计：</h2>
-<h3 id="-测试分析">- 测试分析：</h3>
-<ul>
-<li>
-<p>我们需要做什么？</p>
-<ol>
-<li>把明确的需求点转换成测试项</li>
-<li>缺陷预防</li>
-</ol>
-</li>
-<li>
-<p>怎么做？</p>
-<ol>
-<li>整体模块分析</li>
-<li>逻辑分析【这一点主要是从产品实现的原理上去分析可能的影响】</li>
-</ol>
-<ul>
-<li>
-<p>怎么做？</p>
-<ul>
-<li>
-<p>开发的设计文档</p>
-<ul>
-<li>补充和挖掘测试点</li>
-</ul>
-<ol>
-<li>全部服务的异常监控、服务重启</li>
-<li>各类存储对空间的占用、占满、是否需要做存储的接口测试</li>
-<li>所有类型的管理员、操作权限测试、支持的多少管理员并发操作</li>
-<li>对流程图的挖掘 – 流程图全部流程测试、流程图重要的节点异常测试</li>
-<li>对状态的挖掘 – 所有状态的相互转化需要覆盖全、状态转化是否合理、每一个状态下哪些操作可做哪些不可做，多个状态是否可以共存</li>
-<li>对关联项的挖掘 – 流程进展到哪一步关机重启/服务重启、和备份配置的关联，和操作日志的关联等等</li>
-<li>任务的并发操作测试、是否可配置、是否会出现性能不足，是否符合用户场景</li>
-<li>异常处理机制测试，异常处理机制是否完善</li>
-<li>指标测试，开发的指标设计是否合理</li>
-</ol>
-<ul>
-<li>修正不合理的需求</li>
-</ul>
-</li>
-<li>
-<p>如何分析</p>
-<ul>
-<li>逻辑原理：
-<ol>
-<li>该模块是否涉及到一些全新的概念(比如我们的 bbc 全量包)，需要明确?</li>
-<li>该模块包括哪些服务?</li>
-<li>该模块涉及到哪些存储技术(如 mysql、dap、redis)?具体怎么存储的?占用大小如何?</li>
-<li>该模块的操作流程有哪些?是否有子流程图?</li>
-<li>该模块是否有多个状态的转化?是否有明确的状态转化图?</li>
-<li>该模块对多个管理员是否区分，管理员权限如何设计?</li>
-<li>该模块是否有一些特殊的操作限制?操作限制是否有明确的表格?</li>
-<li>该模块的任务是否有并发需求?并发的设计?</li>
-<li>该模块的所有指标如何?</li>
-<li>该模块是否有异常处理机制?在设备各种异常时，该模块的设计是否满足能稳健运行?</li>
-</ol>
-</li>
-<li>场景分析
-<ol>
-<li>从用户的使用习惯和使用方法去分析影响</li>
-<li>检查当前案例是否覆盖到用户场景</li>
-</ol>
-</li>
-<li>关联测试分析：
-<ol>
-<li>考虑你的模块所在整个系统的地位，分析上下游的影响</li>
-<li>对老功能的影响</li>
-</ol>
-</li>
-<li>经验补充分析
-<ol>
-<li>版本分析</li>
-<li>模块分析</li>
-</ol>
-</li>
-<li>输出
-<ol>
-<li>测试项</li>
-<li>补充测试地图</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="-测试设计">- 测试设计：</h3>
-<ul>
-<li>
-<p>需要做什么？</p>
-<ol>
-<li>把测试项细化成测试点</li>
-<li>缺陷预防</li>
-</ol>
-</li>
-<li>
-<p>需要做什么？</p>
-<ul>
-<li>基本设计方法</li>
-</ul>
-<ol>
-<li>等价类划分法【将输入域和输出域划分为不同的等价类，等价类之内的操作结果相同】，使用范围：显示输入框输入</li>
-<li>边界值法【需要结合等价类划分法方法，在划分出来的等价类选取有代表性的值】</li>
-<li>正反对比【一般会放到同一个用例里覆盖】</li>
-<li>字符多样性【考虑不同字符的输入】</li>
-<li>测试类型</li>
-</ol>
-<ul>
-<li>产品专项测试</li>
-<li>正交组合设计【正交矩阵，覆盖各个参数间的组合情况】</li>
-<li>业务逻辑设计【根据业务设计测试点】</li>
-</ul>
-</li>
-<li>
-<p>输出：</p>
-<ul>
-<li>基本测试点</li>
-</ul>
-</li>
-</ul>
-<h3 id="-用例设计">- 用例设计：</h3>
-<ul>
-<li>
-<p>需要做什么？</p>
-<ul>
-<li>把测试点用文字完整表述出来</li>
-</ul>
-</li>
-<li>
-<p>怎么做？</p>
-<ul>
-<li>
-<p>功能用例框架：</p>
-<ul>
-<li>
-<p>模块框架模板</p>
-<ul>
-<li>
-<p>需求类</p>
-<ul>
-<li>
-<p>UI测试【如果UI用例可以被功能用例覆盖，这里可以不写】</p>
-<ul>
-<li>
-<p>公共测试类：</p>
-<ul>
-<li>链接</li>
-</ul>
-<ol>
-<li>选中会有高亮显示</li>
-<li>点击跳转到对应页面</li>
-<li>当前页面对应的名称下有区别显示</li>
-</ol>
-<ul>
-<li>翻页</li>
-<li>按钮</li>
-<li>输入框【这个功能用例一般可以覆盖】</li>
-<li>下拉框</li>
-<li>排序</li>
-<li>条目选择【这个很重要，第一次集成测试一定要保证每个选项都是有效的】</li>
-<li>搜索</li>
-</ul>
-<ol>
-<li>所有字符类型验证</li>
-<li>为空验证</li>
-<li>模糊搜索</li>
-<li>精确搜索</li>
-<li>搜索不存在的关键词</li>
-</ol>
-<ul>
-<li>刷新</li>
-</ul>
-<ol>
-<li>验证自动刷新</li>
-<li>验证手动刷新</li>
-<li>验证持续刷新</li>
-</ol>
-<ul>
-<li>拖动</li>
-<li>移动</li>
-</ul>
-<ol>
-<li>点击下移，往下移动一行</li>
-<li>点击上移，往上移动一行</li>
-<li>最上面的行，上移不能点击，图标灰色</li>
-<li>最下面的行，下移不能点击，图标灰色</li>
-</ol>
-</li>
-<li>
-<p>功能测试</p>
-<ul>
-<li>测试点：</li>
-</ul>
-<ol>
-<li>功能基本流程逻辑覆盖</li>
-<li>业务流程多样性覆盖</li>
-<li>用户操作习惯的多样性</li>
-<li>模块配置的多样性</li>
-<li>数据流的多样性覆盖</li>
-</ol>
-<ul>
-<li>测试目录</li>
-</ul>
-<ol>
-<li>平级分类相对独立</li>
-<li>上下级分类有关联</li>
-<li>下级从上级细化而来</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>关联类：</p>
-</li>
-</ul>
-<ol>
-<li>模块与模块之间的</li>
-<li>模块与功能之间</li>
-<li>模块与硬件之间</li>
-</ol>
-<ul>
-<li>
-<p>场景类</p>
-<ul>
-<li>建模思路</li>
-</ul>
-<ol>
-<li>部署方式【比如用户一般使用2主机还是3主机部署集群】</li>
-<li>数据流</li>
-<li>业务流【用户是怎么使用申请工单，是怎么样的完整流程】</li>
-<li>操作顺序【创建云主机的顺序之类的】</li>
-<li>配置方法【用户一般怎么配置使用静态路由】</li>
-<li>使用时间【用户会不会连续长时间开启云主机】</li>
-<li>用户角色【一般那些角色做什么操作】</li>
-</ol>
-<ul>
-<li>用户操作的设计方向</li>
-</ul>
-<ol>
-<li>最常用的功能</li>
-<li>最容易出现网上问题的功能</li>
-<li>典型客户使用的功能</li>
-<li>版本的性能验证</li>
-</ol>
-</li>
-<li>
-<p>专项类</p>
-<ol>
-<li>
-<p>兼容性</p>
-</li>
-<li>
-<p>可靠性【测试产品在异常情况下能否正常工作或者是恢复正常工作，可靠性重点测试对模块自身处理的覆盖】. 补充：容错性测试【测试系统在非正常操作、非正常的外部环境下是否能够处理错误和正常运行】</p>
-<p>eg：</p>
-<ol>
-<li>针对数据库的测试：【磁盘空间不足、数据库文件损坏、无读写数据权限、写数据时断电、写数据时强制关闭mysql、读写速度】</li>
-<li>针对网络设备：【网络中有攻击数据、丢包时延大、IP冲突、网络线路断开、同时掉电】</li>
-<li>针对程序：【 客户端进程被手动停止、设备后台资源cpu、内存占满】</li>
-</ol>
-</li>
-<li>
-<p>安全性【主要是验证程序有哪些缺陷可能会造成安全方面的问题】</p>
-<p>eg：</p>
-<ol>
-<li>密码加密方式【什么时候用明文，什么时候用密码显示】</li>
-<li>隐私数据隐藏【用户的隐私显示】</li>
-<li>设备的完整目录【完整的目录会增加后台被攻击的危险】</li>
-<li>文件上传功能【检查上传的文件类型；限制上传文件的权限】</li>
-<li>防暴力破解【对于连线认证之类的操作要冻结、禁用其连续错误尝试操作】</li>
-</ol>
-</li>
-<li>
-<p>脚本测试</p>
-<ul>
-<li>
-<p>使用注意细节</p>
-<ul>
-<li>
-<p>文件夹以01-xx，02-xx区分开</p>
-</li>
-<li>
-<p>每个文件夹下不能超过10个用例</p>
-</li>
-<li>
-<p>每个测试用例一个测试点</p>
-</li>
-<li>
-<p>在02-功能测试的描述中，备注说明功能测试框架的思路</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="-用例整体规范">- 用例整体规范：</h3>
-<ul>
-<li>
-<p>用例标题【好的标题需要准确的表达你的测试目的、要测试的测试点】</p>
-<p>eg：</p>
-<ul>
-<li>测试。。。</li>
-<li>验证。。。</li>
-<li>。。。的测试</li>
-<li>与。。。的关联测试</li>
-<li>。。。的异常测试</li>
-<li>。。。的兼容性测试</li>
-</ul>
-</li>
-<li>
-<p>用例属性</p>
-<ol>
-<li>测试环境【默认的前置条件可以不用写；写的前置条件要准确，不要写的模糊】</li>
-</ol>
-</li>
-</ul>
-<ol>
-<li>测试方法
-<ol>
-<li>优先级
-<ul>
-<li>BVT【最最最基本的功能】-BVT(10%)：模块最基本的功能验证(含常用部署、基本关联)，推荐1级用例的20%左右</li>
-<li>level1【基本操作、基本场景】-Leve1(30%)：基本需求点，基本逻辑，基本可靠性，基本关联，基本用户场景</li>
-<li>level2【比较少见的正常操作】-Leve2(40%)：常见功能/逻辑细化点/专项细化点，常见关联/容错/边界值/用户场景</li>
-<li>level3【异常操作；后续不需要再执行】-Leve3(20%)：错误提示、极少测试的用例、非常见部署方式/用户场景/容错/边界值等</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>用例格式
-<ol>
-<li>前置条件</li>
-<li>测试步骤【单个用例全部步骤不能超过8步】</li>
-<li>后置条件【不是必填的】</li>
-<li>预期结果</li>
-<li>备注【不是必填的】</li>
-</ol>
-</li>
-<li>语言规范
-<ol>
-<li>语言简练</li>
-<li>不能出现模糊的形容词【比如说大概、可能、很多、差不多】</li>
-</ol>
-</li>
-<li>可维护性
-<ol>
-<li>灵活运用模块备注</li>
-</ol>
-</li>
-<li>设计原则
-<ol>
-<li>目的明确【一个用例对应一个测试点；测试步骤和测试目的一致】</li>
-<li>用例效率
-<ul>
-<li>保证设计出来的用例10分钟内可以执行完成；</li>
-<li>用例需要的环境可以整理出来，然后写到模块备注中，让执行者先准备好环境一次性执行全部用例；</li>
-<li>执行的时候按照测试集方式来执行；</li>
-<li>有工具可以实现的用例不要采用脚本方式实现</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<ol>
-<li>测试步骤：
-<ul>
-<li>用户角度
-<ol>
-<li>设计的用例要符合用户的操作顺序和操作习惯</li>
-<li>符合用户的使用环境</li>
-<li>符合用户的配置</li>
-</ol>
-</li>
-<li>可执行
-<ol>
-<li>不要出现那种用例设计没有错，但是执行起来很复杂或者是依赖环境很夸张的用例</li>
-</ol>
-</li>
-<li>正反对比
-<ol>
-<li>这一点很重要，很多时候我们会把有正反操作的用例分开写，其实是可以合在一个用例里面写</li>
-</ol>
-</li>
-<li>强弱关联
-<ol>
-<li>对于强关联的步骤一定要写清楚</li>
-<li>对于弱关联的可以备注或者是不写</li>
-</ol>
-</li>
-<li>测试用例不能出现操作步骤
-<ol>
-<li>直接写需要做的操作就可以了</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>预期结果：</li>
-</ol>
-<ul>
-<li>用户角度：
-<ol>
-<li>反思用户期望操作完会有什么结果</li>
-<li>反思客户最关注的测试点</li>
-</ol>
-</li>
-<li>可检查
-<ol>
-<li>预期结果要可以观察到，不要写的很模糊</li>
-<li>把重点检查的检查点覆盖到</li>
-</ol>
-</li>
-<li>用例编写口诀
-<ol>
-<li>强弱正反之业务</li>
-<li>重点突出之效率</li>
-<li>目的明确之语言</li>
-<li>框架覆盖之检查</li>
-<li>逻辑场景之经验</li>
-</ol>
-</li>
-</ul>
+                            <p>​		<br>
+​		<strong>数据驱动</strong>的单元测试是为数据源中的每一行重复运行的一种单元测试。<strong>数据驱动</strong>的单元测试的常用情况是使用多个输入值测试 API。不是编写调用 API 的多个单元测试（每个单元测试均具有一组新的输入），也不是在单元测试中创建一个数组并使用循环代码，而是可以编写执行 API 的单个单元测试方法。然后可以从数据库表的行中进行数据检索以便传递给该测试方法的连续调用。可以使用此技术测试由不同用户（每个用户具有不同角色）使用的应用程序。对于每个用户，数据源中的一行将根据角色指示预期响应。然后，该测试将通过针对每个用户运行功能，对该应用程序进行测试，并验证产生的响应是否与预期响应一致。</p>
+<p>​		在测试工作中，针对某一API接口，或者某一个用户界面的输入框，需要设计大量相关的用例，每一个用例包含实际输入的各种可能的数据。通常的做法是，将测试数据存放到一个数据文件里，然后从数据文件读取，在脚本中循环输入测试数据，并对结果进行验证。</p>
+<p>​		<code>ddt</code>是结合<code>unittest</code>框架来工作的，所以要先具备<code>unittest</code>框架的知识。</p>
+<hr>
+<h2 id="使用步骤">使用步骤</h2>
+<p>1.导入ddt包</p>
+<p>2.用装饰器装饰@ddt</p>
+<p>3.传入参数，执行</p>
+<hr>
+<h2 id="传参示例">传参示例</h2>
+<h3 id="传参方式一单个传参">传参方式一：单个传参</h3>
+<pre><code class="language-python"># 单个传参
+
+import unittest
+from ddt import ddt,data,unpack
+
+
+@ddt
+class MyTestCase1(unittest.TestCase):
+    
+    # 2,3,4会分别按照执行次数传入，比如第一次执行方法传入2，第二次执行方法传入3,第三次......
+    @data(2, 3, 4)
+    def test_normal(self, value):
+        
+        print(value)
+        
+        self.assertEqual(value, 2)
+
+        
+if __name__ == '__main__':
+    
+    unittest.main()
+</code></pre>
+<hr>
+<h3 id="传参方式二元组-列表-字典传参">传参方式二：元组、列表、字典传参</h3>
+<pre><code class="language-python"># 元组、列表、字典传参
+
+import unittest
+from ddt import ddt,data,unpack
+
+
+@ddt
+class MyTestCase2(unittest.TestCase):
+    
+    # 会依次按照执行次数传入，比如第一次执行该方法传入（1，2），第二次传入（2，3）
+    @data((1, 2), (2, 3))
+    @unpack  # 只有需要进行分发参数的时候才需要添加。1分发给value1，2分发给value2
+    def test_tuple(self, value1, value2):
+        
+        print(&quot;tuple:&quot;,value1, value2)
+        
+        self.assertEqual(value2, value1+1)
+        
+     
+    @data([1, 2], [2, 3])
+    @unpack
+    def test_list(self, value1, value2):
+        
+        print(&quot;list:&quot;,value1, value2)
+        
+        self.assertEqual(value2, value1+1)
+        
+    
+    @data({'value1':1, 'value2':2}, {'value1':2, 'value2':3})
+    @unpack   # 入参参数名必须和字典key值一致，否则会报错
+    def test_dict(self, value1, value2):
+        
+        print(&quot;dictionary:&quot;,value1, value2)
+        
+        self.assertEqual(value2, value1+1)
+        
+     
+if __name__ == '__main__':
+    
+    unittest.main()
+</code></pre>
+<hr>
+<h3 id="传参方式三json文件传参">传参方式三：json文件传参</h3>
+<pre><code class="language-python"># 传入json
+
+import unittest
+from ddt import ddt,data,unpack,file_data
+
+
+@ddt
+class MyTestCase3(unittest.TestCase):
+    
+    @file_data('E:\\test.json')
+    def test_file(self, value):
+        
+        print(&quot;json file:&quot;,value)
+        
+ 
+if __name__ == '__main__':
+    
+    unittest.main()
+</code></pre>
 
                         </div>
                         
@@ -771,18 +324,12 @@
                                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90">需求分析：</a>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">使用步骤</a></li>
+<li><a href="#%E4%BC%A0%E5%8F%82%E7%A4%BA%E4%BE%8B">传参示例</a>
 <ul>
-<li><a href="#-%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE">- 整体流程图：</a></li>
-<li><a href="#-%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B">- 分析流程：</a></li>
-</ul>
-</li>
-<li><a href="#%E6%B5%8B%E8%AF%95%E8%AE%BE%E8%AE%A1">测试设计：</a>
-<ul>
-<li><a href="#-%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90">- 测试分析：</a></li>
-<li><a href="#-%E6%B5%8B%E8%AF%95%E8%AE%BE%E8%AE%A1">- 测试设计：</a></li>
-<li><a href="#-%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1">- 用例设计：</a></li>
-<li><a href="#-%E7%94%A8%E4%BE%8B%E6%95%B4%E4%BD%93%E8%A7%84%E8%8C%83">- 用例整体规范：</a></li>
+<li><a href="#%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E4%B8%80%E5%8D%95%E4%B8%AA%E4%BC%A0%E5%8F%82">传参方式一：单个传参</a></li>
+<li><a href="#%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E4%BA%8C%E5%85%83%E7%BB%84-%E5%88%97%E8%A1%A8-%E5%AD%97%E5%85%B8%E4%BC%A0%E5%8F%82">传参方式二：元组、列表、字典传参</a></li>
+<li><a href="#%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E4%B8%89json%E6%96%87%E4%BB%B6%E4%BC%A0%E5%8F%82">传参方式三：json文件传参</a></li>
 </ul>
 </li>
 </ul>
@@ -802,7 +349,7 @@
 
                                             <p class="copyright-item">
                                                 <span>Permalink:</span>
-                                                <span><a href="https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/">https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/</a></span>
+                                                <span><a href="https://liujinyang6.github.io/post/ddt-kuang-jia/">https://liujinyang6.github.io/post/ddt-kuang-jia/</a></span>
                                             </p>
 
                                             <p class="copyright-item">
@@ -817,9 +364,9 @@
                                                         <span style="margin-right:15px">
                                                     <i class="post-share"></i>
                                                     <span>Share:</span>
-                                                        <a title="QR Code" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/"><i class="fa fa-qrcode"></i></a>
-                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/&sharesource=qzone&title=软件测试流程&pics=https://liujinyang6.github.io/images/avatar.png?v=1592289050398&summary="><i class="fa fa-qq"></i></a>
-                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/ruan-jian-ce-shi-liu-cheng/&sharesource=weibo&title=软件测试流程 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1592289050398 "><i class="fa fa-weibo "></i></a>
+                                                        <a title="QR Code" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://liujinyang6.github.io/post/ddt-kuang-jia/"><i class="fa fa-qrcode"></i></a>
+                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/ddt-kuang-jia/&sharesource=qzone&title=DDT框架&pics=https://liujinyang6.github.io/images/avatar.png?v=1592289050398&summary="><i class="fa fa-qq"></i></a>
+                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/ddt-kuang-jia/&sharesource=weibo&title=DDT框架 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1592289050398 "><i class="fa fa-weibo "></i></a>
                                                         
                                                                 </span>
                                                                 <!--en-->
@@ -829,8 +376,16 @@
                                                                         <span class="tag ">
                         
                         
-                        <a href="https://liujinyang6.github.io/tag/FrnBOAKuF/">#
-                                                软件测试
+                        <a href="https://liujinyang6.github.io/tag/eeeVnSPFS/">#
+                                                教程
+                                                    </a>
+                                                    
+                        <a href="https://liujinyang6.github.io/tag/77b2YraK6h/">#
+                                                python
+                                                    </a>
+                                                    
+                        <a href="https://liujinyang6.github.io/tag/O2kJQ0ZbdH/">#
+                                                自动化测试
                                                     </a>
                                                     
                                                         
@@ -846,13 +401,9 @@
                                                                                 <!---->
                                                                                 <section class="post-nav">
                                                                                     
-                                                                                        <a class="prev" rel="prev" href="https://liujinyang6.github.io/post/python-du-qu-config-ini-wen-jian/">
-                                                                                            Python读取config.ini文件
-                                                                                        </a>
-                                                                                        
                                                                                             
-                                                                                                <a class="next" rel="next" href="https://liujinyang6.github.io/post/hello-gridea/">
-                                                                                                    Hello Gridea
+                                                                                                <a class="next" rel="next" href="https://liujinyang6.github.io/post/python-du-xie-excel-wen-jian/">
+                                                                                                    python读写excel文件
                                                                                                 </a>
                                                                                                 
                                                                                 </section>
