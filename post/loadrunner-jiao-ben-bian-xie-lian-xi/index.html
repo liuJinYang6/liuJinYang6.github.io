@@ -178,33 +178,387 @@
 </script>
             <div class="main">
                 <div class="container">
-                    <div class="post-wrap archive">
-                        
+                    <article class="post-wrap">
+                        <header class="post-header">
+                            <h1 class="post-title">
+                                Loadrunner脚本编写练习
+                            </h1>
                             
-                                <h3>
-                                    2018
-                                </h3>
+                                <!--en-->
+                                <div class="post-meta en">
+                                    Author:
+                                    <a itemprop="author" rel="author" href="/">
+                                        Liu jinyang's Blog
+                                    </a>
+                                    <span class="post-time">
+                                Date: <a href="#">2020-07-10</a>
+                            </span>
+                                    <span class="post-readtime">Reading Time:<a
+                                    href="#">5.0
+                                    mins</a></span>
+                                    <span class="post-words">words:<a href="#">898</a></span>
+                                    
+                                        <span class="post-category">
+                                Category:
+                                
+                                <a href="https://liujinyang6.github.io/tag/__pvtnl45/">性能测试</a>
+                                
+                                <a href="https://liujinyang6.github.io/tag/PgBYNpkqSK/">Loadrunner</a>
+                                
+                            </span>
+                                        
+                                            Views:
+                                            <span data-hk-page="current"> - </span>
+                                            
+                                </div>
+                                
+                        </header>
+                        
+                        <div class="post-content">
+                            <h3 id="参数关联-检查点设置">参数关联、检查点设置</h3>
+<pre><code class="language-c">Action()
+{	
+	int i;
+
+	// 获取动态sessionid
+	web_reg_save_param(&quot;sessionid&quot;,
+		&quot;LB=&lt;input type=hidden name=userSession value=&quot;,
+		&quot;RB=&gt;&quot;,
+		&quot;Ord=1&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+
+
+	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1:1080/WebTours/&quot;,LAST);
+
+	// 设置登录检查点
+    
+	web_reg_find(&quot;Search=All&quot;,
+		&quot;SaveCount=checkcount&quot;,
+		&quot;Text=liang01&quot;,
+		LAST);
+
+	lr_start_transaction(&quot;login&quot;);
+
+	web_submit_data(&quot;web_submit_data&quot;,
+		&quot;Action=http://127.0.0.1:1080/WebTours/login.pl&quot;,
+		&quot;Method=POST&quot;,
+		&quot;TargetFrame=&quot;,
+		&quot;Referer=&quot;,
+		ITEMDATA,
+		&quot;Name=userSession&quot;, &quot;Value={sessionid}&quot;, ENDITEM,
+		&quot;Name=username&quot;, &quot;Value=liang01&quot;, ENDITEM,
+		&quot;Name=password&quot;, &quot;Value=123&quot;, ENDITEM,
+		LAST);
+    
+	// 将字符串转化为int
+    
+	i = atoi(lr_eval_string(&quot;{checkcount}&quot;));
+
+	if (i&gt;0) {
+
+		lr_end_transaction(&quot;login&quot;,LR_PASS);
+
+	}
+	else{
+		lr_end_transaction(&quot;login&quot;,LR_FAIL);
+	}
+
+
+
+	return 0;
+}
+
+</code></pre>
+<hr>
+<h3 id="参数使用">参数使用</h3>
+<pre><code class="language-c">Action()
+{
+	
+	//将字符串&quot;test&quot;保存名为canshu的参数
+	//将值存为参数
+	lr_save_string(&quot;test&quot;,&quot;canshu&quot;);
+
+ 	lr_output_message(&quot;参数的值为:%s&quot;,lr_eval_string(&quot;{canshu}&quot;));
+
+	lr_output_message(&quot;参数的值为:%s&quot;,lr_eval_string(&quot;{canshu}&quot;));
+	
+	//提取canshu参数的值
+	//将值从参数中取出
+	lr_eval_string(&quot;{canshu}&quot;);
+}
+</code></pre>
+<hr>
+<h3 id="高级关联">高级关联</h3>
+<pre><code class="language-c">Action()
+{
+
+    // 关联获取大类
+	web_reg_save_param(&quot;Did&quot;,
+		&quot;LB=categoryId=&quot;,
+		&quot;RB=\&quot;&gt;&quot;,
+		&quot;Ord=all&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+
+	// 访问首页
+	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1/pet/&quot;,LAST);
+
+	// 将一个字符串定义成一个参数
+	// 随机获取数组某一元素的值
+	lr_save_string(lr_paramarr_random(&quot;Did&quot;),&quot;did&quot;);
+	
+	
+	// 根据索引获得数组某一元素的值 
+    //lr_save_string(lr_paramarr_idx(&quot;Did&quot;,1),&quot;did&quot;);
+
+	// 随机点击大类
+	web_url(&quot;catlog&quot;,&quot;URL=http://127.0.0.1/pet/Products.aspx?page=0&amp;categoryId={did}&quot;,LAST);
+
+	return 0;
+}
+
+</code></pre>
+<hr>
+<h3 id="练习脚本">练习脚本：</h3>
+<h4 id="按顺序点击访问页面">按顺序点击访问页面</h4>
+<pre><code class="language-c">Action()
+{
+	int i;
+	
+	web_reg_save_param(&quot;fidarr&quot;,
+		&quot;LB=forumdisplay&amp;fid=&quot;,
+		&quot;RB=\&quot;&gt;&quot;,
+		&quot;Ord=all&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+	
+	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
+
+
+	for (i=1;i&lt;=5;i++) {
+		
+		lr_save_string(lr_paramarr_idx(&quot;fidarr&quot;,i*(int)2),&quot;fid&quot;);
+
+		web_url(&quot;catalog&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php?mod=forumdisplay&amp;fid={fid}&quot;,LAST);
+
+	}
+
+
+	return 0;
+}
+
+</code></pre>
+<h4 id="随机登录账号">随机登录账号</h4>
+<pre><code class="language-c">Action()
+{
+	int i = 0;
+
+	web_url(&quot;discuz&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
+    
+
+
+	lr_start_transaction(&quot;login&quot;);
+
+	web_submit_data(&quot;login&quot;,
+		&quot;Action=http://127.0.0.1:8888/discuz/upload/member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes&amp;inajax=1&quot;,
+		&quot;Method=POST&quot;,
+		&quot;TargetFrame=&quot;,
+		&quot;Referer=&quot;,
+		ITEMDATA,
+		&quot;Name=fastloginfield&quot;, &quot;Value=username&quot;, ENDITEM,
+		&quot;Name=username&quot;, &quot;Value={username}&quot;, ENDITEM,
+		&quot;Name=password&quot;, &quot;Value=123&quot;, ENDITEM,
+		&quot;Name=quickforward&quot;, &quot;Value=yes&quot;, ENDITEM,
+		&quot;Name=handlekey&quot;, &quot;Value=ls&quot;, ENDITEM,
+		LAST);
+
+	
+
+	web_reg_find(&quot;Search=All&quot;,
+		&quot;SaveCount=namecount&quot;,
+		&quot;Text={username}&quot;,
+		LAST);
+
+
+	web_url(&quot;discuz&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
+
+
+	i = atoi(lr_eval_string(&quot;{namecount}&quot;));
+
+	
+	if (i&gt;0) {
+		lr_end_transaction(&quot;login&quot;,LR_PASS);
+		lr_output_message(&quot;namecount的值为%d,出现次数大于0，事务通过&quot;,i);
+	}
+	else{
+		lr_end_transaction(&quot;login&quot;,LR_FAIL);
+		lr_output_message(&quot;namecount的值为%d，出现次数为0，事务失败&quot;,i);
+	}
+	
+
+
+	return 0;
+}
+
+</code></pre>
+<h4 id="随机点击任意一个大类再顺序点击其下的小类">随机点击任意一个大类，再顺序点击其下的小类</h4>
+<pre><code class="language-c">Action()
+{
+	int i;
+
+	web_reg_save_param(&quot;catalog_Big&quot;,
+	&quot;LB=hidCategoryId\&quot; value=\&quot;&quot;,
+	&quot;RB=\&quot; /&gt;&lt;/td&gt;&quot;,
+	&quot;Ord=all&quot;,
+	&quot;Search=All&quot;,
+	LAST);
+
+
+
+	web_url(&quot;petshop&quot;,&quot;URL=http://127.0.0.1/pet/&quot;,LAST);
+
+
+	lr_save_string(lr_paramarr_random(&quot;catalog_Big&quot;),&quot;catalog&quot;);
+
+	
+	
+	web_reg_save_param(&quot;catalog_Small&quot;,
+		&quot;LB=&lt;a href='Items.aspx?productId=&quot;,
+		&quot;RB=&amp;categoryId=&quot;,
+		&quot;Ord=all&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+
+	web_url(&quot;random_catalog_big&quot;,&quot;URL=http://127.0.0.1/pet/Products.aspx?page=0&amp;categoryId={catalog}&quot;,LAST);
+
+
+	  for (i=1;i&lt;=4;i++) {
+		//获取小类的catalogId对应的值
+		 lr_save_string(lr_paramarr_idx(&quot;catalog_Small&quot;,i*(int)2),&quot;catalog_small&quot;);
+
+		
+		web_submit_data(&quot;web_submit_data&quot;,
+			&quot;Action=http://127.0.0.1/pet/Items.aspx&quot;,
+			&quot;Method=GET&quot;,
+			&quot;TargetFrame=&quot;,
+			&quot;Referer=&quot;,
+			ITEMDATA,
+			&quot;Name=productId&quot;, &quot;Value={catalog_small}&quot;, ENDITEM,
+			&quot;Name=categoryId&quot;, &quot;Value={catalog}&quot;, ENDITEM,
+			LAST);
+
+
+	  }
+
+
+	return 0;
+}
+
+</code></pre>
+
+                        </div>
+                        
+                            <div class="post-toc">
+                                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%8F%82%E6%95%B0%E5%85%B3%E8%81%94-%E6%A3%80%E6%9F%A5%E7%82%B9%E8%AE%BE%E7%BD%AE">参数关联、检查点设置</a></li>
+<li><a href="#%E5%8F%82%E6%95%B0%E4%BD%BF%E7%94%A8">参数使用</a></li>
+<li><a href="#%E9%AB%98%E7%BA%A7%E5%85%B3%E8%81%94">高级关联</a></li>
+<li><a href="#%E7%BB%83%E4%B9%A0%E8%84%9A%E6%9C%AC">练习脚本：</a>
+<ul>
+<li><a href="#%E6%8C%89%E9%A1%BA%E5%BA%8F%E7%82%B9%E5%87%BB%E8%AE%BF%E9%97%AE%E9%A1%B5%E9%9D%A2">按顺序点击访问页面</a></li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7">随机登录账号</a></li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E7%82%B9%E5%87%BB%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%A4%A7%E7%B1%BB%E5%86%8D%E9%A1%BA%E5%BA%8F%E7%82%B9%E5%87%BB%E5%85%B6%E4%B8%8B%E7%9A%84%E5%B0%8F%E7%B1%BB">随机点击任意一个大类，再顺序点击其下的小类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                            
                                 
                                     
+                                        <!--en-->
+                                        <section class="post-copyright en">
+                                            <p class="copyright-item">
+                                                <span>Author:</span>
+                                                <span>Liu jinyang's Blog</span>
+                                            </p>
 
-                                        <article class="archive-item">
-                                            <a class="archive-item-link" href="https://liujinyang6.github.io/post/github-pageshexoteng-xun-yun-yu-ming-bang-ding/">
-                                                Github Pages+Hexo+腾讯云域名绑定
-                                            </a>
-                                            <span class="archive-item-date">2018-05-14 </span>
-                                        </article>
+                                            <p class="copyright-item">
+                                                <span>Permalink:</span>
+                                                <span><a href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/">https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/</a></span>
+                                            </p>
+
+                                            <p class="copyright-item">
+                                                <span>License:</span>
+                                                <span>MIT License</span>
+                                            </p>
+                                        </section>
                                         
-                                            
                                                 
-                    </div>
-                    <div class="pagination-container">
-                        
-                                                
+                                                    
+                                                        <!-- Share-->
+                                                        <span style="margin-right:15px">
+                                                    <i class="post-share"></i>
+                                                    <span>Share:</span>
+                                                        <a title="QR Code" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/"><i class="fa fa-qrcode"></i></a>
+                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/&sharesource=qzone&title=Loadrunner脚本编写练习&pics=https://liujinyang6.github.io/images/avatar.png?v=1594352619837&summary="><i class="fa fa-qq"></i></a>
+                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/&sharesource=weibo&title=Loadrunner脚本编写练习 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1594352619837 "><i class="fa fa-weibo "></i></a>
                                                         
+                                                                </span>
+                                                                <!--en-->
+                                                                <section class="post-tags en ">
+                                                                    <div>
+                                                                        <span>Tag(s):</span>
+                                                                        <span class="tag ">
+                        
+                        
+                        <a href="https://liujinyang6.github.io/tag/__pvtnl45/">#
+                                                性能测试
+                                                    </a>
+                                                    
+                        <a href="https://liujinyang6.github.io/tag/PgBYNpkqSK/">#
+                                                Loadrunner
+                                                    </a>
+                                                    
+                                                        
+                                                            </span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="javascript:window.history.back();">back</a>
+                                                                        <span>&dot;</span>
+                                                                        <a href="#">home</a>
+                                                                    </div>
+                                                                </section>
                                                                 
-                    </div>
+                                                                                <!---->
+                                                                                <section class="post-nav">
+                                                                                    
+                                                                                            
+                                                                                                <a class="next" rel="next" href="https://liujinyang6.github.io/post/appium-jiao-cheng/">
+                                                                                                    Appium教程
+                                                                                                </a>
+                                                                                                
+                                                                                </section>
+                    </article>
                 </div>
+                
+                                            
             </div>
+    </div>
+    </div>
     </div>
     
     <div id="player"></div>
@@ -351,5 +705,8 @@
                     
         </div>
 </body>
+<script>
+    scroll();
+</script>
 
 </html>
