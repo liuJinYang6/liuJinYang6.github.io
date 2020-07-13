@@ -178,33 +178,223 @@
 </script>
             <div class="main">
                 <div class="container">
-                    <div class="post-wrap archive">
-                        
+                    <article class="post-wrap">
+                        <header class="post-header">
+                            <h1 class="post-title">
+                                Loadrunner脚本常用函数
+                            </h1>
                             
-                                <h3>
-                                    2018
-                                </h3>
+                                <!--en-->
+                                <div class="post-meta en">
+                                    Author:
+                                    <a itemprop="author" rel="author" href="/">
+                                        Liu jinyang's Blog
+                                    </a>
+                                    <span class="post-time">
+                                Date: <a href="#">2020-07-10</a>
+                            </span>
+                                    <span class="post-readtime">Reading Time:<a
+                                    href="#">2.4
+                                    mins</a></span>
+                                    <span class="post-words">words:<a href="#">648</a></span>
+                                    
+                                        <span class="post-category">
+                                Category:
+                                
+                                <a href="https://liujinyang6.github.io/tag/__pvtnl45/">性能测试</a>
+                                
+                                <a href="https://liujinyang6.github.io/tag/PgBYNpkqSK/">Loadrunner</a>
+                                
+                            </span>
+                                        
+                                            Views:
+                                            <span data-hk-page="current"> - </span>
+                                            
+                                </div>
+                                
+                        </header>
+                        
+                            <img class="post-feature-image" src="https://liujinyang6.github.io/post-images/loadrunner-jiao-ben-chang-yong-han-shu.png" alt="">
+                          
+                        <div class="post-content">
+                            <h3 id="web_url">web_url()</h3>
+<p>作用：模拟浏览器发出访问目标网址的请求=get 请求</p>
+<p>语法：Web_url(“步骤名称”,“url=http：//xxxxx”,LAST);</p>
+<p>eg:</p>
+<p>web_url(“访问 baidu”，“url=http://www.baidu.com”，LAST);</p>
+<hr>
+<h3 id="web_submit_data">Web_submit_data()</h3>
+<p>作用：向服务器提交表单数据,支持 post 和 get 方法</p>
+<hr>
+<h3 id="web_custom_request">web_custom_request()</h3>
+<p>作用：自定义向服务器发送 http请求，支持的任意方法的请 求，可以代替<code>web_url</code> 和 <code>web_submit_data</code> 函数</p>
+<hr>
+<h3 id="web_reg_save_param">web_reg_save_param()</h3>
+<p>作用：通过目标对象的左右边界获取服务器返回的动态数据</p>
+<p>方法：工具栏→insert→new step 输入 <code>web_reg_save_param</code>，点击确定</p>
+<p>步骤：</p>
+<p>1、 确定需要关联的对象（动态的、变化的，服务器发送给客户端的）</p>
+<p>2、 使用 httpwatch/fiddler 抓取目标对象，来确定该数据是由哪个请求产生的</p>
+<p>3、 获取目标对象的左右边界，及请求的位置</p>
+<p>4、 填写关联函数的参数名称，左右边界、查找数、查找位置</p>
+<p>5、 用该参数名替换需要向服务器提交的动态数据，引用参数：{参数名}</p>
+<ul>
+<li>注意：从名称上知道关联函数是<code>注册型</code>函数，所以应该放在产生动态数据请求的前面，save_param 表示关联函数获取下来之后保存为一个参数，所以脚本中引用时应该加{} 。</li>
+</ul>
+<hr>
+<h3 id="数组操作">数组操作</h3>
+<pre><code class="language-c">//返回参数数组指定位置的参数的值  
+lr_paramarr_idx(&quot;Did&quot;,1);  
+
+//返回参数数组的元素（参数）的个数  
+lr_paramarr_len(&quot;Did&quot;);  
+
+//返回参数数组随机位置的参数的值  
+lr_paramarr_random(&quot;Did&quot;); 
+</code></pre>
+<hr>
+<h3 id="lr_think_time">lr_think_time（）</h3>
+<p>作用：等待n秒</p>
+<p>用法：lr_think_time（n）</p>
+<hr>
+<h3 id="事务函数">事务函数</h3>
+<p>开始事务：lr_start_transaction(&quot;open&quot;);</p>
+<p>结束事务：lr_end_transaction(&quot;open&quot;, LR_AUTO);</p>
+<p>事务时间=响应时间+思考时间+浪费时间+函数自身执行时间，指的是客户端发出请 求到得到响应的整个过程所经历的时间。</p>
+<p>事务的四种状态：<code>LR_AUTO</code>,<code>LR_STOP</code>,<code>LR_PASS</code>,<code>LR_FAIL</code></p>
+<p>LR_AUTO: 系统自动判断依赖 http 返回的状态码,状态码为200事务就通过</p>
+<hr>
+<h3 id="检查点函数">检查点函数</h3>
+<p>文本检查点函数，优先使用</p>
+<p>Web_reg_find()</p>
+<ul>
+<li>注意：从名称上知道关联函数是<code>注册型</code>函数，所以应该放在检查数据请求的前面</li>
+</ul>
+<hr>
+<h3 id="lr_eval_string">lr_eval_string()</h3>
+<p>作用：取出参数的值</p>
+<p>语法：lr_eval_string(“<code>{参数名}</code>”)</p>
+<hr>
+<h3 id="lr_save_string">lr_save_string()</h3>
+<p>作用：保存字符串到一个参数</p>
+<p>语法：lr_save_string(“<code>value</code>”，<code>参数名</code>);</p>
+<hr>
+<h3 id="lr_output_message">lr_output_message()</h3>
+<p>作用：在控制台打印信息</p>
+<hr>
+<h3 id="类型转化">类型转化</h3>
+<p><code>atoi()</code>：将字符串类型转为整型</p>
+<p><code>itoa()</code>：将整型转为字符串类型</p>
+<hr>
+<h3 id="lr_rendezvous">lr_rendezvous()</h3>
+<p>作用：设置集合点</p>
+<p>用法：lr_rendezvous(&quot;集合点名称&quot;);</p>
+
+                        </div>
+                        
+                            <div class="post-toc">
+                                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#web_url">web_url()</a></li>
+<li><a href="#web_submit_data">Web_submit_data()</a></li>
+<li><a href="#web_custom_request">web_custom_request()</a></li>
+<li><a href="#web_reg_save_param">web_reg_save_param()</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C">数组操作</a></li>
+<li><a href="#lr_think_time">lr_think_time（）</a></li>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E5%87%BD%E6%95%B0">事务函数</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E7%82%B9%E5%87%BD%E6%95%B0">检查点函数</a></li>
+<li><a href="#lr_eval_string">lr_eval_string()</a></li>
+<li><a href="#lr_save_string">lr_save_string()</a></li>
+<li><a href="#lr_output_message">lr_output_message()</a></li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96">类型转化</a></li>
+<li><a href="#lr_rendezvous">lr_rendezvous()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                            
                                 
                                     
+                                        <!--en-->
+                                        <section class="post-copyright en">
+                                            <p class="copyright-item">
+                                                <span>Author:</span>
+                                                <span>Liu jinyang's Blog</span>
+                                            </p>
 
-                                        <article class="archive-item">
-                                            <a class="archive-item-link" href="https://liujinyang6.github.io/post/github-pageshexoteng-xun-yun-yu-ming-bang-ding/">
-                                                Github Pages+Hexo+腾讯云域名绑定
-                                            </a>
-                                            <span class="archive-item-date">2018-05-14 </span>
-                                        </article>
+                                            <p class="copyright-item">
+                                                <span>Permalink:</span>
+                                                <span><a href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/">https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/</a></span>
+                                            </p>
+
+                                            <p class="copyright-item">
+                                                <span>License:</span>
+                                                <span>MIT License</span>
+                                            </p>
+                                        </section>
                                         
-                                            
                                                 
-                    </div>
-                    <div class="pagination-container">
-                        
-                                                
+                                                    
+                                                        <!-- Share-->
+                                                        <span style="margin-right:15px">
+                                                    <i class="post-share"></i>
+                                                    <span>Share:</span>
+                                                        <a title="QR Code" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/"><i class="fa fa-qrcode"></i></a>
+                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/&sharesource=qzone&title=Loadrunner脚本常用函数&pics=https://liujinyang6.github.io/images/avatar.png?v=1594373713381&summary="><i class="fa fa-qq"></i></a>
+                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/&sharesource=weibo&title=Loadrunner脚本常用函数 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1594373713381 "><i class="fa fa-weibo "></i></a>
                                                         
+                                                                </span>
+                                                                <!--en-->
+                                                                <section class="post-tags en ">
+                                                                    <div>
+                                                                        <span>Tag(s):</span>
+                                                                        <span class="tag ">
+                        
+                        
+                        <a href="https://liujinyang6.github.io/tag/__pvtnl45/">#
+                                                性能测试
+                                                    </a>
+                                                    
+                        <a href="https://liujinyang6.github.io/tag/PgBYNpkqSK/">#
+                                                Loadrunner
+                                                    </a>
+                                                    
+                                                        
+                                                            </span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="javascript:window.history.back();">back</a>
+                                                                        <span>&dot;</span>
+                                                                        <a href="#">home</a>
+                                                                    </div>
+                                                                </section>
                                                                 
-                    </div>
+                                                                                <!---->
+                                                                                <section class="post-nav">
+                                                                                    
+                                                                                        <a class="prev" rel="prev" href="https://liujinyang6.github.io/post/zi-dong-hua-ce-shi-selenium/">
+                                                                                            自动化测试---selenium
+                                                                                        </a>
+                                                                                        
+                                                                                            
+                                                                                                <a class="next" rel="next" href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/">
+                                                                                                    Loadrunner脚本编写练习
+                                                                                                </a>
+                                                                                                
+                                                                                </section>
+                    </article>
                 </div>
+                
+                                            
             </div>
+    </div>
+    </div>
     </div>
     
     <div id="player"></div>
@@ -351,5 +541,8 @@
                     
         </div>
 </body>
+<script>
+    scroll();
+</script>
 
 </html>
