@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liujinyang6.github.io</id>
     <title>Liu jinyang&apos;s Blog</title>
-    <updated>2020-07-13T03:00:37.050Z</updated>
+    <updated>2020-07-13T03:01:32.613Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liujinyang6.github.io"/>
     <link rel="self" href="https://liujinyang6.github.io/atom.xml"/>
@@ -209,9 +209,9 @@ for handle in all_handles:
 <p><code>driver.switch_to_alert().xx</code>  ---------接受弹出窗口</p>
 <p>后接方法：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9135242"> <code>text</code><label class="task-list-item-label" for="task-item-9135242"> ``` text``` ：返回 alert/confirm/prompt 中的文字信息。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6508369"> <code>accept</code><label class="task-list-item-label" for="task-item-6508369"> ```accept```：点击确认按钮。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4945780"> <code>dismiss</code><label class="task-list-item-label" for="task-item-4945780"> ```dismiss ```：点击取消按钮，如果有的话</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1292073"> <code>text</code><label class="task-list-item-label" for="task-item-1292073"> ``` text``` ：返回 alert/confirm/prompt 中的文字信息。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4649621"> <code>accept</code><label class="task-list-item-label" for="task-item-4649621"> ```accept```：点击确认按钮。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6835515"> <code>dismiss</code><label class="task-list-item-label" for="task-item-6835515"> ```dismiss ```：点击取消按钮，如果有的话</label></li>
 </ul>
 <p>示例：</p>
 <pre><code class="language-python">driver = webdriver.Firefox()
