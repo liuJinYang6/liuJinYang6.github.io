@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liujinyang6.github.io</id>
     <title>Liu jinyang&apos;s Blog</title>
-    <updated>2020-07-14T07:02:24.188Z</updated>
+    <updated>2020-07-22T08:28:36.917Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liujinyang6.github.io"/>
     <link rel="self" href="https://liujinyang6.github.io/atom.xml"/>
@@ -14,7 +14,7 @@
         <id>https://liujinyang6.github.io/post/zi-dong-hua-ce-shi-selenium/</id>
         <link href="https://liujinyang6.github.io/post/zi-dong-hua-ce-shi-selenium/">
         </link>
-        <updated>2020-07-10T09:26:58.000Z</updated>
+        <updated>2020-05-22T09:26:58.000Z</updated>
         <content type="html"><![CDATA[<h3 id="一-前言">一、前言</h3>
 <p>自动化测试工具：</p>
 <p>功能（UI）自动化----QTP、selenium、appium</p>
@@ -209,9 +209,9 @@ for handle in all_handles:
 <p><code>driver.switch_to_alert().xx</code>  ---------接受弹出窗口</p>
 <p>后接方法：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8841840"> <code>text</code><label class="task-list-item-label" for="task-item-8841840"> ``` text``` ：返回 alert/confirm/prompt 中的文字信息。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3234660"> <code>accept</code><label class="task-list-item-label" for="task-item-3234660"> ```accept```：点击确认按钮。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9061960"> <code>dismiss</code><label class="task-list-item-label" for="task-item-9061960"> ```dismiss ```：点击取消按钮，如果有的话</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8028656"> <code>text</code><label class="task-list-item-label" for="task-item-8028656"> ``` text``` ：返回 alert/confirm/prompt 中的文字信息。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5409850"> <code>accept</code><label class="task-list-item-label" for="task-item-5409850"> ```accept```：点击确认按钮。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4374921"> <code>dismiss</code><label class="task-list-item-label" for="task-item-4374921"> ```dismiss ```：点击取消按钮，如果有的话</label></li>
 </ul>
 <p>示例：</p>
 <pre><code class="language-python">driver = webdriver.Firefox()
@@ -262,344 +262,11 @@ n.find_element_by_xpath(&quot;//option[@value='10']&quot;).click()
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Loadrunner脚本常用函数]]></title>
-        <id>https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/</id>
-        <link href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/">
-        </link>
-        <updated>2020-07-10T06:23:06.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="web_url">web_url()</h3>
-<p>作用：模拟浏览器发出访问目标网址的请求=get 请求</p>
-<p>语法：Web_url(“步骤名称”,“url=http：//xxxxx”,LAST);</p>
-<p>eg:</p>
-<p>web_url(“访问 baidu”，“url=http://www.baidu.com”，LAST);</p>
-<hr>
-<h3 id="web_submit_data">Web_submit_data()</h3>
-<p>作用：向服务器提交表单数据,支持 post 和 get 方法</p>
-<hr>
-<h3 id="web_custom_request">web_custom_request()</h3>
-<p>作用：自定义向服务器发送 http请求，支持的任意方法的请 求，可以代替<code>web_url</code> 和 <code>web_submit_data</code> 函数</p>
-<hr>
-<h3 id="web_reg_save_param">web_reg_save_param()</h3>
-<p>作用：通过目标对象的左右边界获取服务器返回的动态数据</p>
-<p>方法：工具栏→insert→new step 输入 <code>web_reg_save_param</code>，点击确定</p>
-<p>步骤：</p>
-<p>1、 确定需要关联的对象（动态的、变化的，服务器发送给客户端的）</p>
-<p>2、 使用 httpwatch/fiddler 抓取目标对象，来确定该数据是由哪个请求产生的</p>
-<p>3、 获取目标对象的左右边界，及请求的位置</p>
-<p>4、 填写关联函数的参数名称，左右边界、查找数、查找位置</p>
-<p>5、 用该参数名替换需要向服务器提交的动态数据，引用参数：{参数名}</p>
-<ul>
-<li>注意：从名称上知道关联函数是<code>注册型</code>函数，所以应该放在产生动态数据请求的前面，save_param 表示关联函数获取下来之后保存为一个参数，所以脚本中引用时应该加{} 。</li>
-</ul>
-<hr>
-<h3 id="数组操作">数组操作</h3>
-<pre><code class="language-c">//返回参数数组指定位置的参数的值  
-lr_paramarr_idx(&quot;Did&quot;,1);  
-
-//返回参数数组的元素（参数）的个数  
-lr_paramarr_len(&quot;Did&quot;);  
-
-//返回参数数组随机位置的参数的值  
-lr_paramarr_random(&quot;Did&quot;); 
-</code></pre>
-<hr>
-<h3 id="lr_think_time">lr_think_time（）</h3>
-<p>作用：等待n秒</p>
-<p>用法：lr_think_time（n）</p>
-<hr>
-<h3 id="事务函数">事务函数</h3>
-<p>开始事务：lr_start_transaction(&quot;open&quot;);</p>
-<p>结束事务：lr_end_transaction(&quot;open&quot;, LR_AUTO);</p>
-<p>事务时间=响应时间+思考时间+浪费时间+函数自身执行时间，指的是客户端发出请 求到得到响应的整个过程所经历的时间。</p>
-<p>事务的四种状态：<code>LR_AUTO</code>,<code>LR_STOP</code>,<code>LR_PASS</code>,<code>LR_FAIL</code></p>
-<p>LR_AUTO: 系统自动判断依赖 http 返回的状态码,状态码为200事务就通过</p>
-<hr>
-<h3 id="检查点函数">检查点函数</h3>
-<p>文本检查点函数，优先使用</p>
-<p>Web_reg_find()</p>
-<ul>
-<li>注意：从名称上知道关联函数是<code>注册型</code>函数，所以应该放在检查数据请求的前面</li>
-</ul>
-<hr>
-<h3 id="lr_eval_string">lr_eval_string()</h3>
-<p>作用：取出参数的值</p>
-<p>语法：lr_eval_string(“<code>{参数名}</code>”)</p>
-<hr>
-<h3 id="lr_save_string">lr_save_string()</h3>
-<p>作用：保存字符串到一个参数</p>
-<p>语法：lr_save_string(“<code>value</code>”，<code>参数名</code>);</p>
-<hr>
-<h3 id="lr_output_message">lr_output_message()</h3>
-<p>作用：在控制台打印信息</p>
-<hr>
-<h3 id="类型转化">类型转化</h3>
-<p><code>atoi()</code>：将字符串类型转为整型</p>
-<p><code>itoa()</code>：将整型转为字符串类型</p>
-<hr>
-<h3 id="lr_rendezvous">lr_rendezvous()</h3>
-<p>作用：设置集合点</p>
-<p>用法：lr_rendezvous(&quot;集合点名称&quot;);</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Loadrunner脚本编写练习]]></title>
-        <id>https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/</id>
-        <link href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/">
-        </link>
-        <updated>2020-07-10T03:40:52.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="参数关联-检查点设置">参数关联、检查点设置</h3>
-<pre><code class="language-c">Action()
-{	
-	int i;
-
-	// 获取动态sessionid
-	web_reg_save_param(&quot;sessionid&quot;,
-		&quot;LB=&lt;input type=hidden name=userSession value=&quot;,
-		&quot;RB=&gt;&quot;,
-		&quot;Ord=1&quot;,
-		&quot;Search=All&quot;,
-		LAST);
-
-
-
-	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1:1080/WebTours/&quot;,LAST);
-
-	// 设置登录检查点
-    
-	web_reg_find(&quot;Search=All&quot;,
-		&quot;SaveCount=checkcount&quot;,
-		&quot;Text=liang01&quot;,
-		LAST);
-
-	lr_start_transaction(&quot;login&quot;);
-
-	web_submit_data(&quot;web_submit_data&quot;,
-		&quot;Action=http://127.0.0.1:1080/WebTours/login.pl&quot;,
-		&quot;Method=POST&quot;,
-		&quot;TargetFrame=&quot;,
-		&quot;Referer=&quot;,
-		ITEMDATA,
-		&quot;Name=userSession&quot;, &quot;Value={sessionid}&quot;, ENDITEM,
-		&quot;Name=username&quot;, &quot;Value=liang01&quot;, ENDITEM,
-		&quot;Name=password&quot;, &quot;Value=123&quot;, ENDITEM,
-		LAST);
-    
-	// 将字符串转化为int
-    
-	i = atoi(lr_eval_string(&quot;{checkcount}&quot;));
-
-	if (i&gt;0) {
-
-		lr_end_transaction(&quot;login&quot;,LR_PASS);
-
-	}
-	else{
-		lr_end_transaction(&quot;login&quot;,LR_FAIL);
-	}
-
-
-
-	return 0;
-}
-
-</code></pre>
-<hr>
-<h3 id="参数使用">参数使用</h3>
-<pre><code class="language-c">Action()
-{
-	
-	//将字符串&quot;test&quot;保存名为canshu的参数
-	//将值存为参数
-	lr_save_string(&quot;test&quot;,&quot;canshu&quot;);
-
- 	lr_output_message(&quot;参数的值为:%s&quot;,lr_eval_string(&quot;{canshu}&quot;));
-
-	lr_output_message(&quot;参数的值为:%s&quot;,lr_eval_string(&quot;{canshu}&quot;));
-	
-	//提取canshu参数的值
-	//将值从参数中取出
-	lr_eval_string(&quot;{canshu}&quot;);
-}
-</code></pre>
-<hr>
-<h3 id="高级关联">高级关联</h3>
-<pre><code class="language-c">Action()
-{
-
-    // 关联获取大类
-	web_reg_save_param(&quot;Did&quot;,
-		&quot;LB=categoryId=&quot;,
-		&quot;RB=\&quot;&gt;&quot;,
-		&quot;Ord=all&quot;,
-		&quot;Search=All&quot;,
-		LAST);
-
-
-	// 访问首页
-	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1/pet/&quot;,LAST);
-
-	// 将一个字符串定义成一个参数
-	// 随机获取数组某一元素的值
-	lr_save_string(lr_paramarr_random(&quot;Did&quot;),&quot;did&quot;);
-	
-	
-	// 根据索引获得数组某一元素的值 
-    //lr_save_string(lr_paramarr_idx(&quot;Did&quot;,1),&quot;did&quot;);
-
-	// 随机点击大类
-	web_url(&quot;catlog&quot;,&quot;URL=http://127.0.0.1/pet/Products.aspx?page=0&amp;categoryId={did}&quot;,LAST);
-
-	return 0;
-}
-
-</code></pre>
-<hr>
-<h3 id="练习脚本">练习脚本：</h3>
-<h4 id="按顺序点击访问页面">按顺序点击访问页面</h4>
-<pre><code class="language-c">Action()
-{
-	int i;
-	
-	web_reg_save_param(&quot;fidarr&quot;,
-		&quot;LB=forumdisplay&amp;fid=&quot;,
-		&quot;RB=\&quot;&gt;&quot;,
-		&quot;Ord=all&quot;,
-		&quot;Search=All&quot;,
-		LAST);
-
-	
-	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
-
-
-	for (i=1;i&lt;=5;i++) {
-		
-		lr_save_string(lr_paramarr_idx(&quot;fidarr&quot;,i*(int)2),&quot;fid&quot;);
-
-		web_url(&quot;catalog&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php?mod=forumdisplay&amp;fid={fid}&quot;,LAST);
-
-	}
-
-
-	return 0;
-}
-
-</code></pre>
-<h4 id="随机登录账号">随机登录账号</h4>
-<pre><code class="language-c">Action()
-{
-	int i = 0;
-
-	web_url(&quot;discuz&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
-    
-
-
-	lr_start_transaction(&quot;login&quot;);
-
-	web_submit_data(&quot;login&quot;,
-		&quot;Action=http://127.0.0.1:8888/discuz/upload/member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes&amp;inajax=1&quot;,
-		&quot;Method=POST&quot;,
-		&quot;TargetFrame=&quot;,
-		&quot;Referer=&quot;,
-		ITEMDATA,
-		&quot;Name=fastloginfield&quot;, &quot;Value=username&quot;, ENDITEM,
-		&quot;Name=username&quot;, &quot;Value={username}&quot;, ENDITEM,
-		&quot;Name=password&quot;, &quot;Value=123&quot;, ENDITEM,
-		&quot;Name=quickforward&quot;, &quot;Value=yes&quot;, ENDITEM,
-		&quot;Name=handlekey&quot;, &quot;Value=ls&quot;, ENDITEM,
-		LAST);
-
-	
-
-	web_reg_find(&quot;Search=All&quot;,
-		&quot;SaveCount=namecount&quot;,
-		&quot;Text={username}&quot;,
-		LAST);
-
-
-	web_url(&quot;discuz&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
-
-
-	i = atoi(lr_eval_string(&quot;{namecount}&quot;));
-
-	
-	if (i&gt;0) {
-		lr_end_transaction(&quot;login&quot;,LR_PASS);
-		lr_output_message(&quot;namecount的值为%d,出现次数大于0，事务通过&quot;,i);
-	}
-	else{
-		lr_end_transaction(&quot;login&quot;,LR_FAIL);
-		lr_output_message(&quot;namecount的值为%d，出现次数为0，事务失败&quot;,i);
-	}
-	
-
-
-	return 0;
-}
-
-</code></pre>
-<h4 id="随机点击任意一个大类再顺序点击其下的小类">随机点击任意一个大类，再顺序点击其下的小类</h4>
-<pre><code class="language-c">Action()
-{
-	int i;
-
-	web_reg_save_param(&quot;catalog_Big&quot;,
-	&quot;LB=hidCategoryId\&quot; value=\&quot;&quot;,
-	&quot;RB=\&quot; /&gt;&lt;/td&gt;&quot;,
-	&quot;Ord=all&quot;,
-	&quot;Search=All&quot;,
-	LAST);
-
-
-
-	web_url(&quot;petshop&quot;,&quot;URL=http://127.0.0.1/pet/&quot;,LAST);
-
-
-	lr_save_string(lr_paramarr_random(&quot;catalog_Big&quot;),&quot;catalog&quot;);
-
-	
-	
-	web_reg_save_param(&quot;catalog_Small&quot;,
-		&quot;LB=&lt;a href='Items.aspx?productId=&quot;,
-		&quot;RB=&amp;categoryId=&quot;,
-		&quot;Ord=all&quot;,
-		&quot;Search=All&quot;,
-		LAST);
-
-
-	web_url(&quot;random_catalog_big&quot;,&quot;URL=http://127.0.0.1/pet/Products.aspx?page=0&amp;categoryId={catalog}&quot;,LAST);
-
-
-	  for (i=1;i&lt;=4;i++) {
-		//获取小类的catalogId对应的值
-		 lr_save_string(lr_paramarr_idx(&quot;catalog_Small&quot;,i*(int)2),&quot;catalog_small&quot;);
-
-		
-		web_submit_data(&quot;web_submit_data&quot;,
-			&quot;Action=http://127.0.0.1/pet/Items.aspx&quot;,
-			&quot;Method=GET&quot;,
-			&quot;TargetFrame=&quot;,
-			&quot;Referer=&quot;,
-			ITEMDATA,
-			&quot;Name=productId&quot;, &quot;Value={catalog_small}&quot;, ENDITEM,
-			&quot;Name=categoryId&quot;, &quot;Value={catalog}&quot;, ENDITEM,
-			LAST);
-
-
-	  }
-
-
-	return 0;
-}
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Appium教程]]></title>
         <id>https://liujinyang6.github.io/post/appium-jiao-cheng/</id>
         <link href="https://liujinyang6.github.io/post/appium-jiao-cheng/">
         </link>
-        <updated>2020-06-17T07:14:05.000Z</updated>
+        <updated>2020-04-02T07:14:05.000Z</updated>
         <content type="html"><![CDATA[<h2 id="一-appium介绍">一、Appium介绍</h2>
 <p><code>Appium</code>是一款开源的自动化测试工具，其支持 iOS和安卓平台上的原生的，基于移动浏览 器的，混合的应用。</p>
 <p>1、 使用 <code>Appium</code>进行自动化测试的好处</p>
@@ -1803,6 +1470,339 @@ else:
     
 
 </code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Loadrunner脚本编写练习]]></title>
+        <id>https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/</id>
+        <link href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-bian-xie-lian-xi/">
+        </link>
+        <updated>2019-06-10T03:40:52.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="参数关联-检查点设置">参数关联、检查点设置</h3>
+<pre><code class="language-c">Action()
+{	
+	int i;
+
+	// 获取动态sessionid
+	web_reg_save_param(&quot;sessionid&quot;,
+		&quot;LB=&lt;input type=hidden name=userSession value=&quot;,
+		&quot;RB=&gt;&quot;,
+		&quot;Ord=1&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+
+
+	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1:1080/WebTours/&quot;,LAST);
+
+	// 设置登录检查点
+    
+	web_reg_find(&quot;Search=All&quot;,
+		&quot;SaveCount=checkcount&quot;,
+		&quot;Text=liang01&quot;,
+		LAST);
+
+	lr_start_transaction(&quot;login&quot;);
+
+	web_submit_data(&quot;web_submit_data&quot;,
+		&quot;Action=http://127.0.0.1:1080/WebTours/login.pl&quot;,
+		&quot;Method=POST&quot;,
+		&quot;TargetFrame=&quot;,
+		&quot;Referer=&quot;,
+		ITEMDATA,
+		&quot;Name=userSession&quot;, &quot;Value={sessionid}&quot;, ENDITEM,
+		&quot;Name=username&quot;, &quot;Value=liang01&quot;, ENDITEM,
+		&quot;Name=password&quot;, &quot;Value=123&quot;, ENDITEM,
+		LAST);
+    
+	// 将字符串转化为int
+    
+	i = atoi(lr_eval_string(&quot;{checkcount}&quot;));
+
+	if (i&gt;0) {
+
+		lr_end_transaction(&quot;login&quot;,LR_PASS);
+
+	}
+	else{
+		lr_end_transaction(&quot;login&quot;,LR_FAIL);
+	}
+
+
+
+	return 0;
+}
+
+</code></pre>
+<hr>
+<h3 id="参数使用">参数使用</h3>
+<pre><code class="language-c">Action()
+{
+	
+	//将字符串&quot;test&quot;保存名为canshu的参数
+	//将值存为参数
+	lr_save_string(&quot;test&quot;,&quot;canshu&quot;);
+
+ 	lr_output_message(&quot;参数的值为:%s&quot;,lr_eval_string(&quot;{canshu}&quot;));
+
+	lr_output_message(&quot;参数的值为:%s&quot;,lr_eval_string(&quot;{canshu}&quot;));
+	
+	//提取canshu参数的值
+	//将值从参数中取出
+	lr_eval_string(&quot;{canshu}&quot;);
+}
+</code></pre>
+<hr>
+<h3 id="高级关联">高级关联</h3>
+<pre><code class="language-c">Action()
+{
+
+    // 关联获取大类
+	web_reg_save_param(&quot;Did&quot;,
+		&quot;LB=categoryId=&quot;,
+		&quot;RB=\&quot;&gt;&quot;,
+		&quot;Ord=all&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+
+	// 访问首页
+	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1/pet/&quot;,LAST);
+
+	// 将一个字符串定义成一个参数
+	// 随机获取数组某一元素的值
+	lr_save_string(lr_paramarr_random(&quot;Did&quot;),&quot;did&quot;);
+	
+	
+	// 根据索引获得数组某一元素的值 
+    //lr_save_string(lr_paramarr_idx(&quot;Did&quot;,1),&quot;did&quot;);
+
+	// 随机点击大类
+	web_url(&quot;catlog&quot;,&quot;URL=http://127.0.0.1/pet/Products.aspx?page=0&amp;categoryId={did}&quot;,LAST);
+
+	return 0;
+}
+
+</code></pre>
+<hr>
+<h3 id="练习脚本">练习脚本：</h3>
+<h4 id="按顺序点击访问页面">按顺序点击访问页面</h4>
+<pre><code class="language-c">Action()
+{
+	int i;
+	
+	web_reg_save_param(&quot;fidarr&quot;,
+		&quot;LB=forumdisplay&amp;fid=&quot;,
+		&quot;RB=\&quot;&gt;&quot;,
+		&quot;Ord=all&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+	
+	web_url(&quot;index&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
+
+
+	for (i=1;i&lt;=5;i++) {
+		
+		lr_save_string(lr_paramarr_idx(&quot;fidarr&quot;,i*(int)2),&quot;fid&quot;);
+
+		web_url(&quot;catalog&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php?mod=forumdisplay&amp;fid={fid}&quot;,LAST);
+
+	}
+
+
+	return 0;
+}
+
+</code></pre>
+<h4 id="随机登录账号">随机登录账号</h4>
+<pre><code class="language-c">Action()
+{
+	int i = 0;
+
+	web_url(&quot;discuz&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
+    
+
+
+	lr_start_transaction(&quot;login&quot;);
+
+	web_submit_data(&quot;login&quot;,
+		&quot;Action=http://127.0.0.1:8888/discuz/upload/member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes&amp;inajax=1&quot;,
+		&quot;Method=POST&quot;,
+		&quot;TargetFrame=&quot;,
+		&quot;Referer=&quot;,
+		ITEMDATA,
+		&quot;Name=fastloginfield&quot;, &quot;Value=username&quot;, ENDITEM,
+		&quot;Name=username&quot;, &quot;Value={username}&quot;, ENDITEM,
+		&quot;Name=password&quot;, &quot;Value=123&quot;, ENDITEM,
+		&quot;Name=quickforward&quot;, &quot;Value=yes&quot;, ENDITEM,
+		&quot;Name=handlekey&quot;, &quot;Value=ls&quot;, ENDITEM,
+		LAST);
+
+	
+
+	web_reg_find(&quot;Search=All&quot;,
+		&quot;SaveCount=namecount&quot;,
+		&quot;Text={username}&quot;,
+		LAST);
+
+
+	web_url(&quot;discuz&quot;,&quot;URL=http://127.0.0.1:8888/discuz/upload/forum.php&quot;,LAST);
+
+
+	i = atoi(lr_eval_string(&quot;{namecount}&quot;));
+
+	
+	if (i&gt;0) {
+		lr_end_transaction(&quot;login&quot;,LR_PASS);
+		lr_output_message(&quot;namecount的值为%d,出现次数大于0，事务通过&quot;,i);
+	}
+	else{
+		lr_end_transaction(&quot;login&quot;,LR_FAIL);
+		lr_output_message(&quot;namecount的值为%d，出现次数为0，事务失败&quot;,i);
+	}
+	
+
+
+	return 0;
+}
+
+</code></pre>
+<h4 id="随机点击任意一个大类再顺序点击其下的小类">随机点击任意一个大类，再顺序点击其下的小类</h4>
+<pre><code class="language-c">Action()
+{
+	int i;
+
+	web_reg_save_param(&quot;catalog_Big&quot;,
+	&quot;LB=hidCategoryId\&quot; value=\&quot;&quot;,
+	&quot;RB=\&quot; /&gt;&lt;/td&gt;&quot;,
+	&quot;Ord=all&quot;,
+	&quot;Search=All&quot;,
+	LAST);
+
+
+
+	web_url(&quot;petshop&quot;,&quot;URL=http://127.0.0.1/pet/&quot;,LAST);
+
+
+	lr_save_string(lr_paramarr_random(&quot;catalog_Big&quot;),&quot;catalog&quot;);
+
+	
+	
+	web_reg_save_param(&quot;catalog_Small&quot;,
+		&quot;LB=&lt;a href='Items.aspx?productId=&quot;,
+		&quot;RB=&amp;categoryId=&quot;,
+		&quot;Ord=all&quot;,
+		&quot;Search=All&quot;,
+		LAST);
+
+
+	web_url(&quot;random_catalog_big&quot;,&quot;URL=http://127.0.0.1/pet/Products.aspx?page=0&amp;categoryId={catalog}&quot;,LAST);
+
+
+	  for (i=1;i&lt;=4;i++) {
+		//获取小类的catalogId对应的值
+		 lr_save_string(lr_paramarr_idx(&quot;catalog_Small&quot;,i*(int)2),&quot;catalog_small&quot;);
+
+		
+		web_submit_data(&quot;web_submit_data&quot;,
+			&quot;Action=http://127.0.0.1/pet/Items.aspx&quot;,
+			&quot;Method=GET&quot;,
+			&quot;TargetFrame=&quot;,
+			&quot;Referer=&quot;,
+			ITEMDATA,
+			&quot;Name=productId&quot;, &quot;Value={catalog_small}&quot;, ENDITEM,
+			&quot;Name=categoryId&quot;, &quot;Value={catalog}&quot;, ENDITEM,
+			LAST);
+
+
+	  }
+
+
+	return 0;
+}
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Loadrunner脚本常用函数]]></title>
+        <id>https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/</id>
+        <link href="https://liujinyang6.github.io/post/loadrunner-jiao-ben-chang-yong-han-shu/">
+        </link>
+        <updated>2019-06-01T06:23:06.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="web_url">web_url()</h3>
+<p>作用：模拟浏览器发出访问目标网址的请求=get 请求</p>
+<p>语法：Web_url(“步骤名称”,“url=http：//xxxxx”,LAST);</p>
+<p>eg:</p>
+<p>web_url(“访问 baidu”，“url=http://www.baidu.com”，LAST);</p>
+<hr>
+<h3 id="web_submit_data">Web_submit_data()</h3>
+<p>作用：向服务器提交表单数据,支持 post 和 get 方法</p>
+<hr>
+<h3 id="web_custom_request">web_custom_request()</h3>
+<p>作用：自定义向服务器发送 http请求，支持的任意方法的请 求，可以代替<code>web_url</code> 和 <code>web_submit_data</code> 函数</p>
+<hr>
+<h3 id="web_reg_save_param">web_reg_save_param()</h3>
+<p>作用：通过目标对象的左右边界获取服务器返回的动态数据</p>
+<p>方法：工具栏→insert→new step 输入 <code>web_reg_save_param</code>，点击确定</p>
+<p>步骤：</p>
+<p>1、 确定需要关联的对象（动态的、变化的，服务器发送给客户端的）</p>
+<p>2、 使用 httpwatch/fiddler 抓取目标对象，来确定该数据是由哪个请求产生的</p>
+<p>3、 获取目标对象的左右边界，及请求的位置</p>
+<p>4、 填写关联函数的参数名称，左右边界、查找数、查找位置</p>
+<p>5、 用该参数名替换需要向服务器提交的动态数据，引用参数：{参数名}</p>
+<ul>
+<li>注意：从名称上知道关联函数是<code>注册型</code>函数，所以应该放在产生动态数据请求的前面，save_param 表示关联函数获取下来之后保存为一个参数，所以脚本中引用时应该加{} 。</li>
+</ul>
+<hr>
+<h3 id="数组操作">数组操作</h3>
+<pre><code class="language-c">//返回参数数组指定位置的参数的值  
+lr_paramarr_idx(&quot;Did&quot;,1);  
+
+//返回参数数组的元素（参数）的个数  
+lr_paramarr_len(&quot;Did&quot;);  
+
+//返回参数数组随机位置的参数的值  
+lr_paramarr_random(&quot;Did&quot;); 
+</code></pre>
+<hr>
+<h3 id="lr_think_time">lr_think_time（）</h3>
+<p>作用：等待n秒</p>
+<p>用法：lr_think_time（n）</p>
+<hr>
+<h3 id="事务函数">事务函数</h3>
+<p>开始事务：lr_start_transaction(&quot;open&quot;);</p>
+<p>结束事务：lr_end_transaction(&quot;open&quot;, LR_AUTO);</p>
+<p>事务时间=响应时间+思考时间+浪费时间+函数自身执行时间，指的是客户端发出请 求到得到响应的整个过程所经历的时间。</p>
+<p>事务的四种状态：<code>LR_AUTO</code>,<code>LR_STOP</code>,<code>LR_PASS</code>,<code>LR_FAIL</code></p>
+<p>LR_AUTO: 系统自动判断依赖 http 返回的状态码,状态码为200事务就通过</p>
+<hr>
+<h3 id="检查点函数">检查点函数</h3>
+<p>文本检查点函数，优先使用</p>
+<p>Web_reg_find()</p>
+<ul>
+<li>注意：从名称上知道关联函数是<code>注册型</code>函数，所以应该放在检查数据请求的前面</li>
+</ul>
+<hr>
+<h3 id="lr_eval_string">lr_eval_string()</h3>
+<p>作用：取出参数的值</p>
+<p>语法：lr_eval_string(“<code>{参数名}</code>”)</p>
+<hr>
+<h3 id="lr_save_string">lr_save_string()</h3>
+<p>作用：保存字符串到一个参数</p>
+<p>语法：lr_save_string(“<code>value</code>”，<code>参数名</code>);</p>
+<hr>
+<h3 id="lr_output_message">lr_output_message()</h3>
+<p>作用：在控制台打印信息</p>
+<hr>
+<h3 id="类型转化">类型转化</h3>
+<p><code>atoi()</code>：将字符串类型转为整型</p>
+<p><code>itoa()</code>：将整型转为字符串类型</p>
+<hr>
+<h3 id="lr_rendezvous">lr_rendezvous()</h3>
+<p>作用：设置集合点</p>
+<p>用法：lr_rendezvous(&quot;集合点名称&quot;);</p>
 ]]></content>
     </entry>
 </feed>
