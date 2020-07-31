@@ -92,7 +92,7 @@
                         <input id="switch_default" type="checkbox" class="switch_default">
                         <label for="switch_default" class="toggleBtn"></label>
             </div>
-            <form id="gridea-search-form" data-update="1595406477742" action="/search/index.html">
+            <form id="gridea-search-form" data-update="1596166577230" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" autofocus="true" placeholder="Search...">
             </form>
         </div>
@@ -111,7 +111,7 @@
                         <!--zh-->
                         <a id="mobile-toggle-theme-zh" class="a zh">&nbsp;&#x6697;&#x9ED1;</a>
                     </div>
-                    <form id="gridea-search-form" data-update="1595406477742" action="/search/index.html">
+                    <form id="gridea-search-form" data-update="1596166577230" action="/search/index.html">
                         <input class="search-input" autocomplete="off" spellcheck="false" name="q" autofocus="true" placeholder="Search...">
                     </form>
                     <!--en-->
@@ -194,9 +194,9 @@
                                 Date: <a href="#">2020-04-02</a>
                             </span>
                                     <span class="post-readtime">Reading Time:<a
-                                    href="#">1.3
+                                    href="#">22.7
                                     mins</a></span>
-                                    <span class="post-words">words:<a href="#">336</a></span>
+                                    <span class="post-words">words:<a href="#">5568</a></span>
                                     
                                         <span class="post-category">
                                 Category:
@@ -231,8 +231,791 @@
 <p>​      <code>Appium</code> 开始一个测试后，就会在被测设备（手机）上启动一个 server ，监听来自 Appium server的指令. 每种平台像 iOS 和 Android 都有不同的运行、和交互方式。所以 <code>Appium</code> 会用某个桩程序“侵入”该平台，并接受指令，来完成测试用例的运行。</p>
 <hr>
 <h2 id="二-appium安装">二、Appium安装</h2>
-<p>1、安装JDK，配置JDK 环境</p>
+<h3 id="1-安装jdk配置jdk-环境">1、安装JDK，配置JDK 环境</h3>
 <p>打开计算机-&gt;系统属性-&gt;高级系统设置-&gt;环境变量-&gt;新建（系统变量），如图所示：</p>
+<figure data-type="image" tabindex="1"><img src="https://liujinyang6.github.io/post-images/1596166168045.png" alt="" loading="lazy"></figure>
+<p>配置<code>JAVA_HOME</code></p>
+<p><code>C:\Program Files\Java\jdk1.8.0_181</code>（根据自己的安装磁盘决定盘符）</p>
+<p>配置<code>Path</code>：</p>
+<p><code>;%JAVA_HOME%/bin;%JAVA_HOME%/jre/bin;</code>追加进Path中；</p>
+<p>配置<code>CLASSPATH</code></p>
+<p><code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar</code></p>
+<figure data-type="image" tabindex="2"><img src="https://liujinyang6.github.io/post-images/1596166196868.png" alt="" loading="lazy"></figure>
+<p>验证一下JDK的环境是否配置好，win+r 输入cmd进入dos下输入java -version检查环境是否配置成功。</p>
+<h3 id="2-安装android-sdk配置sdk环境">2、安装Android SDK，配置SDK环境</h3>
+<p>可以直接下载Android Studio，但是如果只是做自动化的话只需要下载Android SDK就行了。此处我们只下载SDK即可。</p>
+<p>若本地无软件请去这里下载，下载地址：http://tools.android-studio.org/index.php/sdk/</p>
+<figure data-type="image" tabindex="3"><img src="https://liujinyang6.github.io/post-images/1596166208034.png" alt="" loading="lazy"></figure>
+<p>下载成功解压后配置Android SDK的环境。</p>
+<p>新建<code>ANDROID_HOME</code>，环境变量内容就配置我们SDK的安装目录，此处我是：<code>C:\Program Files (x86)\Android\android-sdk</code>，根据自己的实际（安装）情况决定。</p>
+<p>如图所示：</p>
+<figure data-type="image" tabindex="4"><img src="https://liujinyang6.github.io/post-images/1596166231740.png" alt="" loading="lazy"></figure>
+<p>打开安装好的SDK文件夹，双击SDK Manager，安装Tools下的Android SDK Platform-tools和Android SDK Build-tools，Android SDK Tools可以选择是否更新，建议直接更新。</p>
+<p>Tools里面的三个必须勾选，版本无所谓。</p>
+<figure data-type="image" tabindex="5"><img src="https://liujinyang6.github.io/post-images/1596166244383.png" alt="" loading="lazy"></figure>
+<ul>
+<li><strong>注意：<strong>下方的镜像（API），随便选一个版本也可以选择多个版本安装，由于镜像比较大，所以有android真机的可以不下载镜像（切记），没有真机的同学才需要安装下方的api镜像，况且安卓本身的模拟器很难用，很卡，我们一般采用第三方模拟器，比如</strong>逍遥、蓝叠</strong>等来生成安卓模拟器，所以建议不用下载下方任何api</li>
+</ul>
+<figure data-type="image" tabindex="6"><img src="https://liujinyang6.github.io/post-images/1596166252886.png" alt="" loading="lazy"></figure>
+<p>下方的extra全部勾选，安装</p>
+<figure data-type="image" tabindex="7"><img src="https://liujinyang6.github.io/post-images/1596166260872.png" alt="" loading="lazy"></figure>
+<p>将<code>%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\build-tools\28.0.3</code> （注意此处我的是28.0.3，请根据自己下载的实际的版本镜像进行替换，位置在sdk安装目录下的build-tools下）加入环境变量Path中。</p>
+<figure data-type="image" tabindex="8"><img src="https://liujinyang6.github.io/post-images/1596166268724.png" alt="" loading="lazy"></figure>
+<p>检查Android SDK的相关环境变量是否配置成功，win+r 打开运行对话框，输入cmd打开dos命令行窗口，在命令行窗口中输入<code>adb --version</code>，看到以下提示，说明配置成功，如果提示adb不是内部或外部命令，原因有两个：</p>
+<p><strong>1-sdk没有安装tools下的platform-tools；</strong></p>
+<p><strong>2-sdk的相关环境变量没有配置正确。</strong></p>
+<figure data-type="image" tabindex="9"><img src="https://liujinyang6.github.io/post-images/1596166280177.png" alt="" loading="lazy"></figure>
+<h3 id="3-安装nodejs">3、安装Node.js</h3>
+<p>本地如果没有软件，请去下载地址：https://nodejs.org/en/</p>
+<p>选择大多数人下载的那个就行</p>
+<figure data-type="image" tabindex="10"><img src="https://liujinyang6.github.io/post-images/1596166290081.png" alt="" loading="lazy"></figure>
+<p>1、下载获取到安装文件后，直接双击安装文件，根据程序的提示，完成nodejs的安装（一直下一步就行，可以将路径进行修改）。</p>
+<p>将Node.js的安装路径（也就是node.exe文件所在的目录），此处我安装的是d盘，所以是<code>D:\Program Files\nodejs</code>追加到环境变量Path中。</p>
+<figure data-type="image" tabindex="11"><img src="https://liujinyang6.github.io/post-images/1596166302120.png" alt="" loading="lazy"></figure>
+<p>检查一下环境是否配置好，在命令行中输入npm</p>
+<figure data-type="image" tabindex="12"><img src="https://liujinyang6.github.io/post-images/1596166312443.png" alt="" loading="lazy"></figure>
+<h3 id="4-安装net-framework如果电脑上安装了或者安装了更高版本的则不需要此步骤">4、安装.net framework（如果电脑上安装了或者安装了更高版本的则不需要此步骤）</h3>
+<p>​    由于Appium是用.net开发的，所以安装之前需要安装.net framework，否则安装过程中会报错，官网下载：http://www.microsoft.com/zh-cn/download/details.aspx?id=30653</p>
+<p>​    下载成功后直接点击安装即可。</p>
+<h3 id="5-安装appium">5、安装Appium</h3>
+<p>​    下载地址：https://bitbucket.org/appium/appium.app/downloads/</p>
+<p>​    当前最新版本为 AppiumForWindows_1_4_16_1.zip ，注意这是一个 Windows 版本，如果你的电脑为MAC请下载 appium-1.5.3.dmg 。虽然你已经看到了这些下载包，但我不保证你能下载的下来。</p>
+<p>​    我们以 Windows 为例，将下载的 AppiumForWindows.zip 进行解压，点击 appium-installer.exe 进行安装。</p>
+<p>​    在Path中配置appium的环境变量，将安装的Appium文件夹所在目录\Appium\node_modules.bin添加进path</p>
+<figure data-type="image" tabindex="13"><img src="https://liujinyang6.github.io/post-images/1596166337381.png" alt="" loading="lazy"></figure>
+<p>cmd打开命令行窗口，输入appium-doctor ，出现以下提示，All Checks were successful ,说明环境配置成功。</p>
+<figure data-type="image" tabindex="14"><img src="https://liujinyang6.github.io/post-images/1596166348943.png" alt="" loading="lazy"></figure>
+<h3 id="六-安装appium-python-client这步很重要目的是需要将python与appium关联起来">六、安装appium - python - client（这步很重要，目的是需要将Python与appium关联起来)</h3>
+<p>​    首先需要安装Python3.x，进行环境配置</p>
+<p>​    cmd打开命令行窗口，输入：pip install Appium-Python-Client，提示成功就可以了，我这边是已经安装过了。</p>
+<figure data-type="image" tabindex="15"><img src="https://liujinyang6.github.io/post-images/1596166360731.png" alt="" loading="lazy"></figure>
+<p>如果提示以下错误:</p>
+<figure data-type="image" tabindex="16"><img src="https://liujinyang6.github.io/post-images/1596166372309.png" alt="" loading="lazy"></figure>
+<p>则通过<strong>更换国内安装源</strong>和<strong>设置超时时间</strong>可以解决。</p>
+<p>在<code>pip install XXX</code>命令的后面加上<br>
+<code>--default-timeout=100 -i https://pypi.tuna.tsinghua.edu.cn/simple</code>即可。<br>
+有时候只需更换国内安装源便可解决问题。如下图所示:</p>
+<figure data-type="image" tabindex="17"><img src="https://liujinyang6.github.io/post-images/1596166382981.png" alt="" loading="lazy"></figure>
+<p>至此，appium环境搭建成功！！！</p>
+<hr>
+<h2 id="三-启动真机或模拟器准备工作">三、启动真机或模拟器准备工作</h2>
+<p>启动目标app前先确定以下条件是否满足：</p>
+<h3 id="1appium服务器是否正常运行">1.appium服务器是否正常运行</h3>
+<p>双击该软件appium-desktop，启动appium服务器</p>
+<figure data-type="image" tabindex="18"><img src="https://liujinyang6.github.io/post-images/1596166393778.png" alt="" loading="lazy"></figure>
+<p>启动后：</p>
+<figure data-type="image" tabindex="19"><img src="https://liujinyang6.github.io/post-images/1596166403565.png" alt="" loading="lazy"></figure>
+<p>点击start Server，启动appium服务器</p>
+<figure data-type="image" tabindex="20"><img src="https://liujinyang6.github.io/post-images/1596166414358.png" alt="" loading="lazy"></figure>
+<p>看到以上图形，代表服务启动成功。</p>
+<h3 id="2手机模拟器是否已连接且能在adb中查看到">2.手机/模拟器是否已连接，且能在adb中查看到</h3>
+<p>通过dos窗口输入adb devices查看，下图为模拟器的例子</p>
+<figure data-type="image" tabindex="21"><img src="https://liujinyang6.github.io/post-images/1596166427096.png" alt="" loading="lazy"></figure>
+<p>adb 命令进行连接模拟器，</p>
+<p>命令：<code>adb connect 127.0.0.1:port</code>----（此处的端口由模拟器决定，不同的模拟器默认端口不同），如下图:</p>
+<figure data-type="image" tabindex="22"><img src="https://liujinyang6.github.io/post-images/1596166443937.png" alt="" loading="lazy"></figure>
+<p>各种模拟器默认端口：</p>
+<table>
+<thead>
+<tr>
+<th>夜神安卓模拟器</th>
+<th><strong>62001</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>逍遥安卓模拟器</strong></td>
+<td><strong>21503</strong></td>
+</tr>
+<tr>
+<td><strong>BlueStacks (蓝叠安卓模拟器)</strong></td>
+<td><strong>5555</strong></td>
+</tr>
+<tr>
+<td><strong>雷电安卓模拟器</strong></td>
+<td><strong>5555</strong></td>
+</tr>
+<tr>
+<td><strong>天天安卓模拟器</strong></td>
+<td><strong>5037</strong></td>
+</tr>
+<tr>
+<td><strong>网易MuMu (安卓模拟器)</strong></td>
+<td><strong>7555</strong></td>
+</tr>
+<tr>
+<td><strong>安卓模拟器大师</strong></td>
+<td><strong>54001</strong></td>
+</tr>
+<tr>
+<td><strong>Genymotion</strong></td>
+<td><strong>5555</strong></td>
+</tr>
+</tbody>
+</table>
+<p>如果是安卓真机，需要在设置里面进入关于手机，里面连击版本号，会提示手机已进入开发者模式，在设置中查找开发者选项，开启USB调试，再次通过数据线连接手机即可。</p>
+<ul>
+<li>注意：模拟器和真机不要同时连接，以免产生影响</li>
+</ul>
+<h3 id="3被测软件是否已经安装到真机模拟器上">3.被测软件是否已经安装到真机/模拟器上</h3>
+<p>将目标apk安装到目标机器上，如果是模拟器，如下图：</p>
+<figure data-type="image" tabindex="23"><img src="https://liujinyang6.github.io/post-images/1596166453479.png" alt="" loading="lazy"></figure>
+<p>点击此处，找到目标apk，即可安装到模拟器</p>
+<p>以上3个条件满足，我们开始编写代码，来启动app</p>
+<hr>
+<h2 id="四-appium启动">四、appium启动</h2>
+<p>此处我们以模拟器上的今日头条的apk为例</p>
+<pre><code class="language-python"># 导入appium包
+from appium import webdriver
+import time
+
+# 设置启动参数
+def startUp():
+    
+    print(&quot;启动中......&quot;)
+    
+    # 启动参数设置成dict数据格式
+    desire_caps = {
+        &quot;deviceName&quot;: &quot;127.0.0.1:21503&quot;,
+        &quot;platformName&quot;: &quot;Android&quot;,
+        &quot;platformVersion&quot;: &quot;5.1.1&quot;,
+        &quot;appPackage&quot;: &quot;com.ss.android.article.news&quot;,
+        &quot;appActivity&quot;: &quot;com.ss.android.article.news.activity.MainActivity&quot;,
+        &quot;noReset&quot;: True,
+        &quot;unicodeKeyboard&quot;: True
+    }
+    
+    # 启动app（第一个参数输入appium server的服务器地址，默认端口为4723，第二个参数输入启动参数）
+    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desire_caps)
+    
+    print(&quot;启动完成，等待3秒。&quot;)
+    
+    time.sleep(3)
+    
+    # 定位目标元素，进行操作
+    
+    # 关闭app
+    
+if __name__ = '__main__':
+    
+    startUp()
+    
+
+
+</code></pre>
+<p><code>&quot;deviceName&quot;</code>: 通过<code>adb devices</code>获取，此处是模拟器所以填写的是ip和port<br>
+<code>&quot;platformName&quot;</code>: 被测系统决定是Android还是ios,<br>
+<code>&quot;platformVersion&quot;</code>: 通过查看被测系统的设置查看,<br>
+<code>&quot;appPackage&quot;</code>: 通过<code>aapt dump badging xxx.apk | findstr package</code>获取,<br>
+<code>&quot;appActivity&quot;</code>: 通过<code>aapt dump badging xxx.apk | findstr activity</code>获取,</p>
+<p>操作方法：</p>
+<p>1、 将目标apk放在一个已知目录下</p>
+<p>2、 进入dos环境，进入到该目录下，输入</p>
+<p><code>aapt dump badging jinritoutiao.apk |findstr package</code>  ----用来查看package</p>
+<p><code>aapt dump badging jinritoutiao.apk |findstr activity</code>  ----用来查看activity</p>
+<p>如果是linux或者mac 则把<code>findstr</code>换成<code>grep</code></p>
+<p>总结：</p>
+<p>​    <code>aapt dump badging D:\XXX.apk</code>:  获取安装包的所有信息</p>
+<p><code>adb devices</code>: 查看手机是否连接到电脑，可以看到设备名称</p>
+<p>​	其他：</p>
+<p>​    <code>adb shell dumpsys activity</code>：查看当前运行的是哪个activity,运行的一些进程等</p>
+<p>​    <code>adb shell pm list packages</code>：列出所有的包名。</p>
+<p>​    <code>adb shell dumpsys package</code>：列出所有的安装应用的信息</p>
+<p>​    <code>adb shell dumpsys package com.android.XXX</code>：查看某个包的具体信息</p>
+<p>​    <code>adb logcat | grep ActivityManager</code>：查看当前正在运行的Activity</p>
+<p>详细操作：</p>
+<p>1、 连接真机或者模拟器（此处以真机为例）</p>
+<p>​    连接手机时注意选择手机的开发者模式，cmd打开命令行窗口，输入adb devices获取到设备的deviceName。</p>
+<figure data-type="image" tabindex="24"><img src="https://liujinyang6.github.io/post-images/1596166466871.png" alt="" loading="lazy"></figure>
+<p>2.获取Activity</p>
+<p>​    cmd打开命令行窗口，输入<code>aapt dump badging D:\XXX.apk</code>（xxx指安装包名，D:\是指路径）直接查看需要测试app安装包的具体信息。</p>
+<figure data-type="image" tabindex="25"><img src="https://liujinyang6.github.io/post-images/1596166473014.png" alt="" loading="lazy"></figure>
+<p>标记的就是包名，继续往下拖拽，可以找到activity的信息。</p>
+<figure data-type="image" tabindex="26"><img src="https://liujinyang6.github.io/post-images/1596166479616.png" alt="" loading="lazy"></figure>
+<p>这里的红圈就可以看到activity的信息。这两个值，在appium脚本中都需要提前获取到，所以需要提前介绍这个获取方法。如果你觉得在cmd里面不好看，你可以把cmd信息导出到一个txt文件，例如 <code>aapt dump badging shoujibaidu.apk &gt; 123.txt</code> 回车后，会在桌面生成一个123.txt文件，你可以打开，通过查询找到这些信息。通过上面的方法，只要我们有android SDK环境，那么我们就可以获取到任意一个包的包名和Activity信息。</p>
+<p>填好一下参数，参数说明如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>能力</strong></th>
+<th style="text-align:center"><strong>描述</strong></th>
+<th style="text-align:center"><strong>值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">appPackage</td>
+<td style="text-align:center">App的包名，通过aapt dumpsys badging xxx.apk获取</td>
+<td style="text-align:center">例如：'appPackage':  'com.jyibb.shell_customer',</td>
+</tr>
+<tr>
+<td style="text-align:center">platformName</td>
+<td style="text-align:center">使用哪个移动操作系统平台</td>
+<td style="text-align:center">例如：'platformName': 'Android'</td>
+</tr>
+<tr>
+<td style="text-align:center">platformVersion</td>
+<td style="text-align:center">移动操作系统版本</td>
+<td style="text-align:center">例如：'platformVersion': '5.1'</td>
+</tr>
+<tr>
+<td style="text-align:center">deviceName</td>
+<td style="text-align:center">使用的移动设备或模拟器的名称，通过adb devices获取</td>
+<td style="text-align:center">例如：'deviceName':'8TB6V4ZPZ54LPJ5P'</td>
+</tr>
+<tr>
+<td style="text-align:center">app</td>
+<td style="text-align:center">如果为第一次启动则需要通过该参数指定app安装包的位置，一般为绝对路径</td>
+<td style="text-align:center">例如：'app': ‘D:\shell_customer-debug.apk'</td>
+</tr>
+<tr>
+<td style="text-align:center">newCommandTimeout</td>
+<td style="text-align:center">在假定客户端退出并结束会话之前，Appium将等待来自客户端的新命令（以秒为单位）</td>
+<td style="text-align:center">例如 60</td>
+</tr>
+<tr>
+<td style="text-align:center">appActivity</td>
+<td style="text-align:center">通过aapt dumpsys badging xxx.apk获取</td>
+<td style="text-align:center">例如   'appActivity':  'com.jyibb.module_launch_customer.SplashActivity',</td>
+</tr>
+<tr>
+<td style="text-align:center">udid</td>
+<td style="text-align:center">连接的物理设备的唯一设备标识符，此参数为ios特有参数</td>
+<td style="text-align:center">例如 ：'udid':'1ae203187fc012g'</td>
+</tr>
+<tr>
+<td style="text-align:center">noReset</td>
+<td style="text-align:center">在此会话之前不要重置应用程序状态。</td>
+<td style="text-align:center">true， false</td>
+</tr>
+<tr>
+<td style="text-align:center">fullReset</td>
+<td style="text-align:center">执行完整的重置。</td>
+<td style="text-align:center">true， false</td>
+</tr>
+<tr>
+<td style="text-align:center">unicodeKeyboard</td>
+<td style="text-align:center">解决输入中文的问题，否则不能用sendkeys输入中文</td>
+<td style="text-align:center">例如，   ‘unicodeKeyboard':'True'</td>
+</tr>
+<tr>
+<td style="text-align:center">resetKeyboard</td>
+<td style="text-align:center">将键盘隐藏起来，默认true</td>
+<td style="text-align:center">true， false</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="五-appium元素定位">五、 appium元素定位</h2>
+<h3 id="1-常用识别元素的工具">1、常用识别元素的工具</h3>
+<ol>
+<li>
+<p><code>uiautomator</code>：Android SDK自带的一个工具，在sdk的tools目录下（一定关闭appium-desktop的自带的定位工具后打开，否则连接不上模拟器/真机 ）</p>
+<p>找到sdk下的tools里面的uiautomatorviewer.bat</p>
+</li>
+</ol>
+<p>​		<img src="https://liujinyang6.github.io/post-images/1596166491903.png" alt="" loading="lazy"></p>
+<p>​		双击打开后界面是：</p>
+<p>​		<img src="https://liujinyang6.github.io/post-images/1596166500251.png" alt="" loading="lazy"></p>
+<p>​		点击后，可以连上模拟器和真机</p>
+<p>​		<img src="https://liujinyang6.github.io/post-images/1596166510869.png" alt="" loading="lazy"></p>
+<p>​		以头条app为例</p>
+<p>​		<img src="https://liujinyang6.github.io/post-images/1596166520322.png" alt="" loading="lazy"></p>
+<ol start="2">
+<li>
+<p>appium-desktop优先使用desktop</p>
+<p>启动appium-desktop，点击服务器右上角的查找按钮，界面如下</p>
+</li>
+</ol>
+<p>​	<img src="https://liujinyang6.github.io/post-images/1596166531803.png" alt="" loading="lazy"></p>
+<figure data-type="image" tabindex="27"><img src="https://liujinyang6.github.io/post-images/1596166542773.png" alt="" loading="lazy"></figure>
+<p>点击启动后：</p>
+<figure data-type="image" tabindex="28"><img src="https://liujinyang6.github.io/post-images/1596166551141.png" alt="" loading="lazy"></figure>
+<p>使用介绍：</p>
+<figure data-type="image" tabindex="29"><img src="https://liujinyang6.github.io/post-images/1596166560283.png" alt="" loading="lazy"></figure>
+<p>使用方法：</p>
+<figure data-type="image" tabindex="30"><img src="https://liujinyang6.github.io/post-images/1596166569551.png" alt="" loading="lazy"></figure>
+<ol start="3">
+<li><code>monitor</code>：Android SDK自带的一个工具，在tools目录下，此工具主要用来监控Android手机的运行情况，比如线程、堆内存，日志输出、等等。</li>
+</ol>
+<h3 id="2元素定位">2.元素定位</h3>
+<h4 id="1格式find_element_by_定位方式value">1.格式：find_element_by_定位方式(value)</h4>
+<h5 id="通过id定位">通过id定位</h5>
+<pre><code class="language-python"># 取resource-id的值
+driver.find_element_by_id(&quot;com.wuba.zhuanzhuan:id/azo&quot;)
+
+# 也可以直接用id后面的内容
+driver.find_element_by_id(&quot;azo&quot;)
+
+</code></pre>
+<h5 id="通过class_name定位">通过class_name定位</h5>
+<pre><code class="language-python"># 取class的内容
+driver.find_element_by_class_name(&quot;android.widget.RelativeLayout&quot;)
+
+</code></pre>
+<h5 id="通过xpath定位">通过xpath定位</h5>
+<pre><code class="language-python"># 取xpath得内容
+driver.find_element_by_xpath(&quot;//android.widget.LinearLayout[1]/android.widget.XXX&quot;)
+
+</code></pre>
+<h5 id="通过text定位">通过text定位</h5>
+<pre><code class="language-python"># 需要使用uiautomator的定位方式，使用text的内容
+driver.find_elements_by_android_uiautomator(&quot;new UiSelector().text(\&quot;+关注\&quot;)&quot;)
+
+</code></pre>
+<p>使用这里需要注意一下，通过text定位的结果是个list，不能直接click。所以如果要点击需要取数组的值，比如下面是点击找到的第一个元素</p>
+<p><code>driver.find_elements_by_android_uiautomator(&quot;new UiSelector().text(\&quot;+关注\&quot;)&quot;)[0].click()</code></p>
+<h5 id="通过css_selector定位webview">通过css_selector定位(webview)</h5>
+<pre><code class="language-python"># 只适用于webview的html页面，继承自webdriver，与pc版本的UI测试一致
+driver.find_element_by_css_selector()
+
+</code></pre>
+<h5 id="通过link_text定位webview">通过link_text定位(webview)</h5>
+<pre><code class="language-python"># 只适用于webview容器中的html页面，继承自webdriver，与pc版本的UI测试一致
+driver.find_element_by_link_text()
+
+</code></pre>
+<h5 id="通过name定位webview">通过name定位(webview)</h5>
+<pre><code class="language-python"># webview容器中的html页面可以用name定位，native并没有name属性
+driver.find_element_by_name()
+
+</code></pre>
+<h4 id="2定位元素的另一种写法find_elementbyvalue">2.定位元素的另一种写法：find_element(by,value)</h4>
+<p><code>find_element_by_方式(value)</code>实际调用的都是<code>find_element(by,value)</code></p>
+<p>需要导入这个包：<code>from selenium.webdriver.common.by import By</code></p>
+<pre><code class="language-python"># 例如：定位id为ag2的元素
+# 方式一：
+driver.find_element_by_id(&quot;ag2”)
+# 方式二：
+driver.find_element(By.ID,&quot;ag2&quot;)
+ 
+
+# 这个操作的好处是可以直接把操作的by和value放到一个元组里，然后调用通用方法来传参获得元素结果
+cateid=(By.ID,&quot;ag2&quot;)
+
+driver.find_element(*cateid).click()
+
+</code></pre>
+<p><strong>by</strong>的操作可以是</p>
+<p><code>By.ID</code>  相当于by_id</p>
+<p><code>By.CLASS_NAME</code> 相当于by_class_name</p>
+<p><code>By.XPATH</code>  相当于by_xpath</p>
+<p><code>By.NAME</code>  相当于by_name</p>
+<p><code>By.TAG_NAME</code>  相当于by_tag_name</p>
+<p><code>By.CSS_SELECTOR</code> 相当于by_css_selector</p>
+<p><code>By.LINK_TEXT</code> 相当于by_link_text</p>
+<p><code>By.android_uiautomator</code> 相当于by_android_uiautomator()</p>
+<p>查看具体写法可以关注https://www.cnblogs.com/cnkemi/p/9185253.html</p>
+<h4 id="3find_elements_by_定位方式value返回元素数组">3.find_elements_by_定位方式(value)返回元素数组</h4>
+<p>用法与find_element_by_方式(value)一致，但是返回一个数组。可以通过数组的索引来访问具体的某个结果</p>
+<p>例如：通过class_name定位到多个元素，我想点击第一个元素</p>
+<p><code>driver.find_elements_by_class_name(&quot;android.widget.RelativeLayout”)[0].click()</code></p>
+<h4 id="4返回元素数组的另一种写法find_elementsbyvalue">4.返回元素数组的另一种写法：find_elements(by,value)</h4>
+<p>用法与find_element(by,value)一致，但是返回一个数组。可以通过数组的索引来访问具体的某个结果</p>
+<p>例如：通过class_name定位到多个元素，我想点击第一个元素</p>
+<p><code>driver.find_elements(By.CLASS_NAME,&quot;android.widget.RelativeLayout&quot;)[0].click()</code></p>
+<h4 id="5通过元素定位元素">5.通过元素定位元素</h4>
+<p>可以先找到某个元素，然后再进一步定位元素</p>
+<p><code>find_element_by_class_xpath(“xxx”).find_element_by_name(“yyy&quot;)</code></p>
+<h4 id="6xpath定位详解">6.Xpath定位详解</h4>
+<p><strong>手工编写：</strong></p>
+<ol>
+<li>纯标签路径：position</li>
+</ol>
+<p>绝对路径：<code>/html/body/div/div[3]/div[2]/form/input</code></p>
+<p>相对路径：<code>//div[2]/form/input</code></p>
+<ol start="2">
+<li>标签和属性结合:attribute</li>
+</ol>
+<p>语法：<code>//标签名[@属性=属性值]</code></p>
+<p>例如：</p>
+<p><code>//input[@id='word']</code></p>
+<p><code>//form/input[@id='word']</code>----标签可以有多个，也可以只有一个</p>
+<p><code>//div[@class='hotwords']/a[1]</code>---也可利用上层标签的属性进行定位</p>
+<p>示例：</p>
+<pre><code class="language-python">driver = webdriver.Firefox()
+
+driver.implicitly_wait(5)
+
+driver.maximize_window()
+
+driver.get('http://127.0.0.1:8888/iwebshop/')
+
+driver.find_element_by_xpath(&quot;//div[@class='hotwords']/a[1]&quot;).click()
+
+time.sleep(5)
+
+driver.quit()
+
+</code></pre>
+<h4 id="7css定位详解">7.CSS定位详解</h4>
+<p>层叠样式表是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
+<p>CSS目前最新版本为CSS3，是能够真正做到网页表现与内容分离的一种样式设计语言。相对于传统HTML的表现而言，CSS能够对网页中的对象的位置排版进行像素级的精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力，并能够进行初步交互设计，是目前基于文本展示最优秀的表现设计语言。CSS能够根据不同使用者的理解能力，简化或者优化写法，针对各类人群，有较强的易读性。</p>
+<p><strong>使用Firebug复制：</strong></p>
+<p>右击目标对象，使用Firebug查看元素，在其高亮区域右击选择复制css路径</p>
+<p><strong>手工编写</strong></p>
+<p>标签和属性组合：<code>标签名[属性名=属性值]</code></p>
+<p>----标签名可以多个，多个时需要用空格隔开：form input.text</p>
+<p>----属性可以随意：input[type='text']&quot;</p>
+<p>例子：Input[class=’xxx’]</p>
+<p>注意：class/id除了可以采用<code>[属性=属性值]</code>的写法，还可以用专用写法</p>
+<p>通过<code>class</code>编写：<code>标签名.class的属性值</code></p>
+<p>通过<code>id</code>编写：<code>标签名#id的值</code></p>
+<p>组合 ：<code>标签名#id值.class值</code></p>
+<p>示例：</p>
+<pre><code class="language-python">driver = webdriver.Firefox()
+
+driver.implicitly_wait(5)
+
+driver.maximize_window()
+
+driver.get('http://127.0.0.1:8888/iwebshop/')
+
+driver.find_element_by_css_selector(&quot;div.brand div.cont ul li a img&quot;).click()
+
+time.sleep(8)
+
+driver.quit()
+</code></pre>
+<hr>
+<h3 id="六-元素操作">六、元素操作</h3>
+<p>找到元素后可以对元素进行的操作，例如上面讲的进一步定位元素</p>
+<h4 id="1click">1.click()</h4>
+<p>//点击操作</p>
+<p>也可以用tap实现点击操作</p>
+<p><code>driver.find_element_by_id(&quot;com.wuba.zhuanzhuan:id/ae8&quot;).click()</code></p>
+<h4 id="2clear">2.clear()</h4>
+<p>//清空输入框内容</p>
+<p><code>driver.find_element_by_id(&quot;com.wuba.zhuanzhuan:id/ij&quot;).clear()</code></p>
+<h4 id="3send_keysxx">3.send_keys(xx)</h4>
+<p>//输入框内输入内容</p>
+<p><code>driver.find_element_by_id(&quot;com.wuba.zhuanzhuan:id/ij&quot;).send_keys(&quot;test content&quot;)</code></p>
+<h4 id="4text">4.text</h4>
+<p>//获得元素的text内容</p>
+<p><code>print(driver.find_element_by_xpath(&quot; //android.widget.LinearLayout[1]//xxx&quot;).text)</code></p>
+<hr>
+<h3 id="七-触摸操作">七、触摸操作</h3>
+<h4 id="1drivertap坐标持续点击时间">1.driver.tap([坐标]，持续点击时间)</h4>
+<p>除了定位到元素的点击外，也可以通过tab实现坐标的点击</p>
+<p><code>driver.tap()</code></p>
+<h4 id="2touchactiondriver">2.TouchAction(driver)</h4>
+<p>TouchAction对象包含（tap）、press（短按）、move_to（滑动到某个坐标）等方法</p>
+<p>通过TouchAction对象，添加tap、move_to等操作，然后perform()执行，可以实现解锁屏幕等功能</p>
+<p>规范中的可用事件有：</p>
+<p><code>短按 (press)</code><br>
+<code>释放 (release)</code><br>
+<code>移动到 (moveTo)</code><br>
+<code>点击 (tap)</code><br>
+<code>等待 (wait)</code><br>
+<code>长按 (longPress)</code><br>
+<code>取消 (cancel)</code><br>
+<code>执行 (perform)</code></p>
+<p>示例：</p>
+<p>一个多次滑屏的例子：</p>
+<pre><code class="language-python">action = TouchAction(driver)
+
+action.press(x=220,y=700).move_to(x=840, y=700).move_to(x=220, y=1530).move_to(x=840, y=1530).release().perform()
+
+# 可以通过wait()等待操作
+action.press(x=220,y=700).move_to(x=840, y=700).wait(1).perform()
+</code></pre>
+<h4 id="3multiaction-多点触控">3.MultiAction()  多点触控</h4>
+<p>通过<code>MultiAction().add()</code>添加多个<code>TouchAction</code>操作，最后调用<code>perform()</code>一起执行这些操作</p>
+<pre><code class="language-python">action0 = TouchAction().tap(el)
+
+
+action1 = TouchAction().tap(el)
+
+
+MultiAction().add(action0).add(action1).perform()
+</code></pre>
+<h4 id="4driverswipex1-y1-x2-y2duration">4.driver.swipe(x1, y1, x2, y2,duration)</h4>
+<p>从<code>坐标(x1,x2)</code>滑动到坐标<code>(x2,y2)</code>，<code>duration</code>非必填项，滑动时间（滑动的坐标不能超过屏幕的宽高）</p>
+<p>可以通过<code>driver.get_window_size()</code>命令获得窗口高和宽，结果为{'width': 1080, 'height': 1776}</p>
+<p>一个向上下左右滑动屏幕的例子如下：</p>
+<pre><code class="language-python"># 获得屏幕大小宽和高
+def getSize(self):
+
+	x = self.driver.get_window_size()['width']
+	y = self.driver.get_window_size()['height']
+	
+	return (x,y)
+
+# 向上滑动屏幕
+def swipeUp(self, t=1000):
+	
+    l = getSize()
+    x1 = int(l[0] * 0.5)
+    y1 = int(l[1] * 0.25)
+    y2 = int(l[1] * 0.75)
+    
+    self.driver.swipe(x1, y1, x1, y2, t)
+    
+
+# 向下滑动屏幕
+def swipeDown(self, t=1000):
+    
+    l = getSize()
+    x1 = int(l[0] * 0.5)
+    y1 = int(l[1] * 0.75)
+    y2 = int(l[1] * 0.25)
+    
+    self.driver.swipe(x1, y1, x1, y2, t)
+    
+    
+# 向左滑动屏幕
+def swipeLeft(self, t=1000):
+    
+    l = getSize()
+    y1 = int(l[1] * 0.5)
+    x1 = int(l[0] * 0.25)
+    x2 = int(l[0] * 0.75)
+    
+    self.driver.swipe(x1, y1, x2, y1, t)
+    
+
+    
+# 向右滑动屏幕
+def swipeRight(self, t=1000):
+    
+    l = getSize()
+    y1 = int(l[1] * 0.5)
+    x1 = int(l[0] * 0.75)
+    x2 = int(l[0] * 0.25)
+    
+    self.driver.swipe(x1, y1, x2, y1, t)
+    
+  
+# 调用向下滑动的方法
+swipeDown(driver)
+</code></pre>
+<hr>
+<h3 id="八-系统按键事件">八、系统按键事件</h3>
+<h4 id="press_keycodeandroidkeycode">press_keycode(AndroidKeyCode)</h4>
+<p>例如：点击home键，home键的KeyCode是3</p>
+<p><code>driver.press_keycode(3)</code></p>
+<table>
+<thead>
+<tr>
+<th>键名</th>
+<th>描述</th>
+<th>键值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_CALL</td>
+<td>拨号键</td>
+<td>5</td>
+</tr>
+<tr>
+<td>KEYCODE_ENDCALL</td>
+<td>挂机键</td>
+<td>6</td>
+</tr>
+<tr>
+<td>KEYCODE_HOME</td>
+<td>按键Home</td>
+<td>3</td>
+</tr>
+<tr>
+<td>KEYCODE_MENU</td>
+<td>菜单键</td>
+<td>82</td>
+</tr>
+<tr>
+<td>KEYCODE_BACK</td>
+<td>返回键</td>
+<td>4</td>
+</tr>
+<tr>
+<td>KEYCODE_SEARCH</td>
+<td>搜索键</td>
+<td>84</td>
+</tr>
+<tr>
+<td>KEYCODE_CAMERA</td>
+<td>拍照键</td>
+<td>27</td>
+</tr>
+<tr>
+<td>KEYCODE_FOCUS</td>
+<td>拍照对焦键</td>
+<td>80</td>
+</tr>
+<tr>
+<td>KEYCODE_POWER</td>
+<td>电源键</td>
+<td>26</td>
+</tr>
+<tr>
+<td>KEYCODE_NOTIFICATION</td>
+<td>通知键</td>
+<td>83</td>
+</tr>
+<tr>
+<td>KEYCODE_MUTE</td>
+<td>话筒静音键</td>
+<td>91</td>
+</tr>
+<tr>
+<td>KEYCODE_VOLUME_MUTE</td>
+<td>扬声器静音键</td>
+<td>164</td>
+</tr>
+<tr>
+<td>KEYCODE_VOLUME_UP</td>
+<td>音量增加键</td>
+<td>24</td>
+</tr>
+<tr>
+<td>KEYCODE_VOLUME_DOWN</td>
+<td>音量减小键</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="九-driver的一些其他操作">九、driver的一些其他操作</h3>
+<h4 id="1reset">1.reset()</h4>
+<ul>
+<li>重置app：这时候driver会重置，相当于卸载重装应用。所以本地缓存会失效</li>
+</ul>
+<p><code>driver.reset()</code></p>
+<h4 id="2scroll起始元素结束元素">2.scroll(起始元素，结束元素)</h4>
+<ul>
+<li>滑动屏幕：从起始元素滑动到结束元素</li>
+</ul>
+<p><code>driver.scroll(origin_el,destination_el)</code></p>
+<h4 id="3driverpage_source">3.driver.page_source</h4>
+<ul>
+<li>获取当前页面内的所有元素</li>
+</ul>
+<p>这可以用来判断元素是否存在，例如：<code>assert &quot;发布成功&quot; in driver.page_source</code></p>
+<h4 id="4driveris_app_installedpackage_name">4.driver.is_app_installed(package_name)</h4>
+<ul>
+<li>检查app安装情况（返回true或false）</li>
+</ul>
+<p><code>driver.is_app_installed(package_name)</code></p>
+<h4 id="5driverinstall_appxxxxapk">5.driver.install_app(&quot;x:/xxx.apk&quot;)</h4>
+<ul>
+<li>安装app</li>
+</ul>
+<p><code>driver.install_app(&quot;x:/xxx.apk&quot;)</code></p>
+<h4 id="6driverremove_apppackage_name">6.driver.remove_app(package_name)</h4>
+<ul>
+<li>卸载app</li>
+</ul>
+<p><code>driver.remove_app(package_name)</code></p>
+<h4 id="7driveropen_notifications">7.driver.open_notifications()</h4>
+<ul>
+<li>打开通知栏</li>
+</ul>
+<p><code>driver.open_notifications()</code></p>
+<h4 id="8driverclose_app">8.driver.close_app()</h4>
+<ul>
+<li>关闭app</li>
+</ul>
+<p><code>driver.close_app()</code></p>
+<h4 id="9driverlaunch_app">9.driver.launch_app()</h4>
+<ul>
+<li>启动app</li>
+</ul>
+<p><code>driver.launch_app()</code></p>
+<h4 id="10drivershake">10.driver.shake</h4>
+<ul>
+<li>模拟摇晃设备</li>
+</ul>
+<p><code>driver.shake</code></p>
+<h4 id="11driverresetapp">11.driver.resetApp()</h4>
+<ul>
+<li>重置应用</li>
+</ul>
+<p><code>driver.resetApp()</code></p>
+<h4 id="12driverfind_element_by_idactivity">12.driver.find_element_by_id(activity)</h4>
+<ul>
+<li>检查是否存在某个activity(未找到则返回异常）</li>
+</ul>
+<p><code>driver.find_element_by_id(activity)</code></p>
+<h4 id="13selfdrivercurrent_activity">13.self.driver.current_activity</h4>
+<ul>
+<li>获取当前的activity</li>
+</ul>
+<pre><code class="language-python">activity = self.driver.current_activity 
+
+print(u&quot;当前的activity是:&quot;, activity)
+</code></pre>
+<h4 id="14driverwait_activityactivity-x-y">14.driver.wait_activity(activity, x, y)</h4>
+<ul>
+<li>等待activity启动直到x秒超时，每隔y秒扫描一次</li>
+</ul>
+<p><code>driver.wait_activity(activity, x, y)</code></p>
+<h4 id="15driverbackground_appx">15.driver.background_app(x)</h4>
+<ul>
+<li>
+<p>将app置于后台运行x s</p>
+</li>
+<li>
+<p>注意：测试发现置于后台数秒后变为前台时，将是重新启动app，进入首页，而不是切入后台时的界面</p>
+</li>
+</ul>
+<p><code>driver.background_app(x)</code></p>
+<h4 id="16driveravailable_ime_engines">16.driver.available_ime_engines</h4>
+<ul>
+<li>打印可用的输入法</li>
+</ul>
+<pre><code class="language-python">IME_LISE = driver.available_ime_engines
+
+print(IME_LISE)
+</code></pre>
+<h4 id="17driveractivate_ime_engineime_lise-1">17.driver.activate_ime_engine(IME_LISE[-1])</h4>
+<ul>
+<li>激活安卓设备中的指定输入法(设备可用输入法可以从“available_ime_engines”获取)&quot;</li>
+</ul>
+<p><code>driver.activate_ime_engine(IME_LISE[-1])</code></p>
+<h4 id="18driveris_ime_active">18.driver.is_ime_active()</h4>
+<ul>
+<li>检查设备是否有输入法服务活动,返回True/False</li>
+</ul>
+<p><code>driver.is_ime_active()</code></p>
+<h4 id="19driverhide_keyboard">19.driver.hide_keyboard()</h4>
+<ul>
+<li>退出键盘</li>
+</ul>
+<p><code>driver.hide_keyboard()</code></p>
+<hr>
+<h3 id="十-自动化测试用例的实现">十、自动化测试用例的实现</h3>
+<p>以今日头条发微头条为例：</p>
+<p>前提：启动头条app，且是登录状态</p>
+<ol>
+<li>
+<p>打开首页，点击发表按钮</p>
+</li>
+<li>
+<p>点击微头条，输入内容</p>
+</li>
+<li>
+<p>点击发布</p>
+</li>
+<li>
+<p>检查是否发表成功（数据库/页面）</p>
+</li>
+</ol>
+<p>自动化：</p>
+<ol>
+<li>
+<p>定位目标元素（坐标，元素属性），操作目标元素（点击，滑动，输入）</p>
+</li>
+<li>
+<p>定位目标元素（坐标，元素属性），操作目标元素（点击，滑动，输入）</p>
+</li>
+<li>
+<p>定位目标元素（坐标，元素属性），操作目标元素（点击，滑动，输入）</p>
+</li>
+<li>
+<p>断言（接口状态码，数据库字段，app页面）</p>
+</li>
+</ol>
 
                         </div>
                         
@@ -241,7 +1024,95 @@
 <li>
 <ul>
 <li><a href="#%E4%B8%80-appium%E4%BB%8B%E7%BB%8D">一、Appium介绍</a></li>
-<li><a href="#%E4%BA%8C-appium%E5%AE%89%E8%A3%85">二、Appium安装</a></li>
+<li><a href="#%E4%BA%8C-appium%E5%AE%89%E8%A3%85">二、Appium安装</a>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85jdk%E9%85%8D%E7%BD%AEjdk-%E7%8E%AF%E5%A2%83">1、安装JDK，配置JDK 环境</a></li>
+<li><a href="#2-%E5%AE%89%E8%A3%85android-sdk%E9%85%8D%E7%BD%AEsdk%E7%8E%AF%E5%A2%83">2、安装Android SDK，配置SDK环境</a></li>
+<li><a href="#3-%E5%AE%89%E8%A3%85nodejs">3、安装Node.js</a></li>
+<li><a href="#4-%E5%AE%89%E8%A3%85net-framework%E5%A6%82%E6%9E%9C%E7%94%B5%E8%84%91%E4%B8%8A%E5%AE%89%E8%A3%85%E4%BA%86%E6%88%96%E8%80%85%E5%AE%89%E8%A3%85%E4%BA%86%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E7%9A%84%E5%88%99%E4%B8%8D%E9%9C%80%E8%A6%81%E6%AD%A4%E6%AD%A5%E9%AA%A4">4、安装.net framework（如果电脑上安装了或者安装了更高版本的则不需要此步骤）</a></li>
+<li><a href="#5-%E5%AE%89%E8%A3%85appium">5、安装Appium</a></li>
+<li><a href="#%E5%85%AD-%E5%AE%89%E8%A3%85appium-python-client%E8%BF%99%E6%AD%A5%E5%BE%88%E9%87%8D%E8%A6%81%E7%9B%AE%E7%9A%84%E6%98%AF%E9%9C%80%E8%A6%81%E5%B0%86python%E4%B8%8Eappium%E5%85%B3%E8%81%94%E8%B5%B7%E6%9D%A5">六、安装appium - python - client（这步很重要，目的是需要将Python与appium关联起来)</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%90%AF%E5%8A%A8%E7%9C%9F%E6%9C%BA%E6%88%96%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">三、启动真机或模拟器准备工作</a>
+<ul>
+<li><a href="#1appium%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C">1.appium服务器是否正常运行</a></li>
+<li><a href="#2%E6%89%8B%E6%9C%BA%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%98%AF%E5%90%A6%E5%B7%B2%E8%BF%9E%E6%8E%A5%E4%B8%94%E8%83%BD%E5%9C%A8adb%E4%B8%AD%E6%9F%A5%E7%9C%8B%E5%88%B0">2.手机/模拟器是否已连接，且能在adb中查看到</a></li>
+<li><a href="#3%E8%A2%AB%E6%B5%8B%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E5%AE%89%E8%A3%85%E5%88%B0%E7%9C%9F%E6%9C%BA%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B8%8A">3.被测软件是否已经安装到真机/模拟器上</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-appium%E5%90%AF%E5%8A%A8">四、appium启动</a></li>
+<li><a href="#%E4%BA%94-appium%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D">五、 appium元素定位</a>
+<ul>
+<li><a href="#1-%E5%B8%B8%E7%94%A8%E8%AF%86%E5%88%AB%E5%85%83%E7%B4%A0%E7%9A%84%E5%B7%A5%E5%85%B7">1、常用识别元素的工具</a></li>
+<li><a href="#2%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D">2.元素定位</a>
+<ul>
+<li><a href="#1%E6%A0%BC%E5%BC%8Ffind_element_by_%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8Fvalue">1.格式：find_element_by_定位方式(value)</a>
+<ul>
+<li><a href="#%E9%80%9A%E8%BF%87id%E5%AE%9A%E4%BD%8D">通过id定位</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87class_name%E5%AE%9A%E4%BD%8D">通过class_name定位</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87xpath%E5%AE%9A%E4%BD%8D">通过xpath定位</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87text%E5%AE%9A%E4%BD%8D">通过text定位</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87css_selector%E5%AE%9A%E4%BD%8Dwebview">通过css_selector定位(webview)</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87link_text%E5%AE%9A%E4%BD%8Dwebview">通过link_text定位(webview)</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87name%E5%AE%9A%E4%BD%8Dwebview">通过name定位(webview)</a></li>
+</ul>
+</li>
+<li><a href="#2%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95find_elementbyvalue">2.定位元素的另一种写法：find_element(by,value)</a></li>
+<li><a href="#3find_elements_by_%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8Fvalue%E8%BF%94%E5%9B%9E%E5%85%83%E7%B4%A0%E6%95%B0%E7%BB%84">3.find_elements_by_定位方式(value)返回元素数组</a></li>
+<li><a href="#4%E8%BF%94%E5%9B%9E%E5%85%83%E7%B4%A0%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95find_elementsbyvalue">4.返回元素数组的另一种写法：find_elements(by,value)</a></li>
+<li><a href="#5%E9%80%9A%E8%BF%87%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0">5.通过元素定位元素</a></li>
+<li><a href="#6xpath%E5%AE%9A%E4%BD%8D%E8%AF%A6%E8%A7%A3">6.Xpath定位详解</a></li>
+<li><a href="#7css%E5%AE%9A%E4%BD%8D%E8%AF%A6%E8%A7%A3">7.CSS定位详解</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-%E5%85%83%E7%B4%A0%E6%93%8D%E4%BD%9C">六、元素操作</a>
+<ul>
+<li><a href="#1click">1.click()</a></li>
+<li><a href="#2clear">2.clear()</a></li>
+<li><a href="#3send_keysxx">3.send_keys(xx)</a></li>
+<li><a href="#4text">4.text</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%83-%E8%A7%A6%E6%91%B8%E6%93%8D%E4%BD%9C">七、触摸操作</a>
+<ul>
+<li><a href="#1drivertap%E5%9D%90%E6%A0%87%E6%8C%81%E7%BB%AD%E7%82%B9%E5%87%BB%E6%97%B6%E9%97%B4">1.driver.tap([坐标]，持续点击时间)</a></li>
+<li><a href="#2touchactiondriver">2.TouchAction(driver)</a></li>
+<li><a href="#3multiaction-%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%8E%A7">3.MultiAction()  多点触控</a></li>
+<li><a href="#4driverswipex1-y1-x2-y2duration">4.driver.swipe(x1, y1, x2, y2,duration)</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AB-%E7%B3%BB%E7%BB%9F%E6%8C%89%E9%94%AE%E4%BA%8B%E4%BB%B6">八、系统按键事件</a>
+<ul>
+<li><a href="#press_keycodeandroidkeycode">press_keycode(AndroidKeyCode)</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B9%9D-driver%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C">九、driver的一些其他操作</a>
+<ul>
+<li><a href="#1reset">1.reset()</a></li>
+<li><a href="#2scroll%E8%B5%B7%E5%A7%8B%E5%85%83%E7%B4%A0%E7%BB%93%E6%9D%9F%E5%85%83%E7%B4%A0">2.scroll(起始元素，结束元素)</a></li>
+<li><a href="#3driverpage_source">3.driver.page_source</a></li>
+<li><a href="#4driveris_app_installedpackage_name">4.driver.is_app_installed(package_name)</a></li>
+<li><a href="#5driverinstall_appxxxxapk">5.driver.install_app(&quot;x:/xxx.apk&quot;)</a></li>
+<li><a href="#6driverremove_apppackage_name">6.driver.remove_app(package_name)</a></li>
+<li><a href="#7driveropen_notifications">7.driver.open_notifications()</a></li>
+<li><a href="#8driverclose_app">8.driver.close_app()</a></li>
+<li><a href="#9driverlaunch_app">9.driver.launch_app()</a></li>
+<li><a href="#10drivershake">10.driver.shake</a></li>
+<li><a href="#11driverresetapp">11.driver.resetApp()</a></li>
+<li><a href="#12driverfind_element_by_idactivity">12.driver.find_element_by_id(activity)</a></li>
+<li><a href="#13selfdrivercurrent_activity">13.self.driver.current_activity</a></li>
+<li><a href="#14driverwait_activityactivity-x-y">14.driver.wait_activity(activity, x, y)</a></li>
+<li><a href="#15driverbackground_appx">15.driver.background_app(x)</a></li>
+<li><a href="#16driveravailable_ime_engines">16.driver.available_ime_engines</a></li>
+<li><a href="#17driveractivate_ime_engineime_lise-1">17.driver.activate_ime_engine(IME_LISE[-1])</a></li>
+<li><a href="#18driveris_ime_active">18.driver.is_ime_active()</a></li>
+<li><a href="#19driverhide_keyboard">19.driver.hide_keyboard()</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%81-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E5%AE%9E%E7%8E%B0">十、自动化测试用例的实现</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -275,8 +1146,8 @@
                                                     <i class="post-share"></i>
                                                     <span>Share:</span>
                                                         <a title="QR Code" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://liujinyang6.github.io/post/appium-jiao-cheng/"><i class="fa fa-qrcode"></i></a>
-                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/appium-jiao-cheng/&sharesource=qzone&title=Appium教程&pics=https://liujinyang6.github.io/images/avatar.png?v=1595406477742&summary="><i class="fa fa-qq"></i></a>
-                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/appium-jiao-cheng/&sharesource=weibo&title=Appium教程 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1595406477742 "><i class="fa fa-weibo "></i></a>
+                                                        <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://liujinyang6.github.io/post/appium-jiao-cheng/&sharesource=qzone&title=Appium教程&pics=https://liujinyang6.github.io/images/avatar.png?v=1596166577230&summary="><i class="fa fa-qq"></i></a>
+                                                        <a title="Weibo" target="_blank" href="https://service.weibo.com/share/share.php?url=https://liujinyang6.github.io/post/appium-jiao-cheng/&sharesource=weibo&title=Appium教程 + " - " + &pic="https://liujinyang6.github.io/images/avatar.png?v=1596166577230 "><i class="fa fa-weibo "></i></a>
                                                         
                                                                 </span>
                                                                 <!--en-->
@@ -428,7 +1299,7 @@
                     CheckVersion();
                     
                     var newDate = new Date();
-                    newDate.setTime(1595406477742);
+                    newDate.setTime(1596166577230);
                     console.log(" Blog Update Time: " + newDate.toLocaleDateString());
                     console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;");
                 </script>
